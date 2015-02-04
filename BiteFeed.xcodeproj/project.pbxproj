@@ -1,0 +1,578 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		60BBDC265D91F00C47CEBC2F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 022D51CA9BF2D664F526DFF3 /* libPods.a */; };
+		DCF35F8D1A78C93800875717 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35F8C1A78C93800875717 /* main.m */; };
+		DCF35F901A78C93800875717 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35F8F1A78C93800875717 /* AppDelegate.m */; };
+		DCF35F931A78C93800875717 /* BFFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35F921A78C93800875717 /* BFFeedViewController.m */; };
+		DCF35F961A78C93800875717 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCF35F941A78C93800875717 /* Main.storyboard */; };
+		DCF35F981A78C93800875717 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCF35F971A78C93800875717 /* Images.xcassets */; };
+		DCF35F9B1A78C93800875717 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCF35F991A78C93800875717 /* LaunchScreen.xib */; };
+		DCF35FA71A78C93800875717 /* BiteFeedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35FA61A78C93800875717 /* BiteFeedTests.m */; };
+		DCF35FB11A78F42F00875717 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF35FB01A78F42F00875717 /* MapKit.framework */; };
+		DCF35FB41A78F7AC00875717 /* BFReportDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35FB31A78F7AC00875717 /* BFReportDetailViewController.m */; };
+		DCF35FB71A793C6700875717 /* BFVerifiedFoodReport.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35FB61A793C6700875717 /* BFVerifiedFoodReport.m */; };
+		DCF35FBC1A79411500875717 /* BFFoodReport.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35FBB1A79411500875717 /* BFFoodReport.m */; };
+		DCF35FBF1A79423700875717 /* BFRestKitManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35FBE1A79423700875717 /* BFRestKitManager.m */; };
+		DCF35FC41A794A5500875717 /* TSCoreMotionListener.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35FC11A794A5500875717 /* TSCoreMotionListener.m */; };
+		DCF35FC51A794A5500875717 /* TSTapDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35FC31A794A5500875717 /* TSTapDetector.m */; };
+		DCF35FCA1A794AFA00875717 /* ARAudioRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35FC81A794AFA00875717 /* ARAudioRecognizer.m */; };
+		DCF35FCC1A794B0C00875717 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF35FCB1A794B0C00875717 /* CoreMotion.framework */; };
+		DCF35FCE1A794B1600875717 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF35FCD1A794B1600875717 /* CoreLocation.framework */; };
+		DCF35FD11A79706300875717 /* BFContributeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35FD01A79706300875717 /* BFContributeViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DCF35FA11A78C93800875717 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DCF35F7F1A78C93800875717 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DCF35F861A78C93800875717;
+			remoteInfo = BiteFeed;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		022D51CA9BF2D664F526DFF3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2AD701A48F224D93DE8475C7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		2C7321AF38F5D1F5FAE88F6F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		DCF35F871A78C93800875717 /* BiteFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BiteFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCF35F8B1A78C93800875717 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DCF35F8C1A78C93800875717 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DCF35F8E1A78C93800875717 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DCF35F8F1A78C93800875717 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DCF35F911A78C93800875717 /* BFFeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BFFeedViewController.h; sourceTree = "<group>"; };
+		DCF35F921A78C93800875717 /* BFFeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BFFeedViewController.m; sourceTree = "<group>"; };
+		DCF35F951A78C93800875717 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DCF35F971A78C93800875717 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		DCF35F9A1A78C93800875717 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		DCF35FA01A78C93800875717 /* BiteFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BiteFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCF35FA51A78C93800875717 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DCF35FA61A78C93800875717 /* BiteFeedTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BiteFeedTests.m; sourceTree = "<group>"; };
+		DCF35FB01A78F42F00875717 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		DCF35FB21A78F7AC00875717 /* BFReportDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFReportDetailViewController.h; sourceTree = "<group>"; };
+		DCF35FB31A78F7AC00875717 /* BFReportDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFReportDetailViewController.m; sourceTree = "<group>"; };
+		DCF35FB51A793C6700875717 /* BFVerifiedFoodReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFVerifiedFoodReport.h; sourceTree = "<group>"; };
+		DCF35FB61A793C6700875717 /* BFVerifiedFoodReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFVerifiedFoodReport.m; sourceTree = "<group>"; };
+		DCF35FBA1A79411500875717 /* BFFoodReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFFoodReport.h; sourceTree = "<group>"; };
+		DCF35FBB1A79411500875717 /* BFFoodReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFFoodReport.m; sourceTree = "<group>"; };
+		DCF35FBD1A79423700875717 /* BFRestKitManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFRestKitManager.h; sourceTree = "<group>"; };
+		DCF35FBE1A79423700875717 /* BFRestKitManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFRestKitManager.m; sourceTree = "<group>"; };
+		DCF35FC01A794A5500875717 /* TSCoreMotionListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCoreMotionListener.h; sourceTree = "<group>"; };
+		DCF35FC11A794A5500875717 /* TSCoreMotionListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCoreMotionListener.m; sourceTree = "<group>"; };
+		DCF35FC21A794A5500875717 /* TSTapDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTapDetector.h; sourceTree = "<group>"; };
+		DCF35FC31A794A5500875717 /* TSTapDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTapDetector.m; sourceTree = "<group>"; };
+		DCF35FC71A794AFA00875717 /* ARAudioRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARAudioRecognizer.h; sourceTree = "<group>"; };
+		DCF35FC81A794AFA00875717 /* ARAudioRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARAudioRecognizer.m; sourceTree = "<group>"; };
+		DCF35FC91A794AFA00875717 /* ARAudioRecognizerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARAudioRecognizerDelegate.h; sourceTree = "<group>"; };
+		DCF35FCB1A794B0C00875717 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		DCF35FCD1A794B1600875717 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		DCF35FCF1A79706300875717 /* BFContributeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFContributeViewController.h; sourceTree = "<group>"; };
+		DCF35FD01A79706300875717 /* BFContributeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFContributeViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DCF35F841A78C93800875717 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCF35FCE1A794B1600875717 /* CoreLocation.framework in Frameworks */,
+				DCF35FCC1A794B0C00875717 /* CoreMotion.framework in Frameworks */,
+				DCF35FB11A78F42F00875717 /* MapKit.framework in Frameworks */,
+				60BBDC265D91F00C47CEBC2F /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCF35F9D1A78C93800875717 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3B48384B004BD9CF7E38010A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2AD701A48F224D93DE8475C7 /* Pods.debug.xcconfig */,
+				2C7321AF38F5D1F5FAE88F6F /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		5523684D9CEAFCCD78386310 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DCF35FCD1A794B1600875717 /* CoreLocation.framework */,
+				DCF35FCB1A794B0C00875717 /* CoreMotion.framework */,
+				022D51CA9BF2D664F526DFF3 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DCF35F7E1A78C93800875717 = {
+			isa = PBXGroup;
+			children = (
+				DCF35FB01A78F42F00875717 /* MapKit.framework */,
+				DCF35F891A78C93800875717 /* BiteFeed */,
+				DCF35FA31A78C93800875717 /* BiteFeedTests */,
+				DCF35F881A78C93800875717 /* Products */,
+				3B48384B004BD9CF7E38010A /* Pods */,
+				5523684D9CEAFCCD78386310 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		DCF35F881A78C93800875717 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DCF35F871A78C93800875717 /* BiteFeed.app */,
+				DCF35FA01A78C93800875717 /* BiteFeedTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DCF35F891A78C93800875717 /* BiteFeed */ = {
+			isa = PBXGroup;
+			children = (
+				DCF35F8E1A78C93800875717 /* AppDelegate.h */,
+				DCF35F8F1A78C93800875717 /* AppDelegate.m */,
+				DCF35FC61A794A8E00875717 /* Tap Detection */,
+				DCF35FB91A793C8400875717 /* Controllers */,
+				DCF35FB81A793C7A00875717 /* Model */,
+				DCF35F941A78C93800875717 /* Main.storyboard */,
+				DCF35F971A78C93800875717 /* Images.xcassets */,
+				DCF35F991A78C93800875717 /* LaunchScreen.xib */,
+				DCF35F8A1A78C93800875717 /* Supporting Files */,
+			);
+			path = BiteFeed;
+			sourceTree = "<group>";
+		};
+		DCF35F8A1A78C93800875717 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DCF35F8B1A78C93800875717 /* Info.plist */,
+				DCF35F8C1A78C93800875717 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DCF35FA31A78C93800875717 /* BiteFeedTests */ = {
+			isa = PBXGroup;
+			children = (
+				DCF35FA61A78C93800875717 /* BiteFeedTests.m */,
+				DCF35FA41A78C93800875717 /* Supporting Files */,
+			);
+			path = BiteFeedTests;
+			sourceTree = "<group>";
+		};
+		DCF35FA41A78C93800875717 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DCF35FA51A78C93800875717 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DCF35FB81A793C7A00875717 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DCF35FB51A793C6700875717 /* BFVerifiedFoodReport.h */,
+				DCF35FB61A793C6700875717 /* BFVerifiedFoodReport.m */,
+				DCF35FBA1A79411500875717 /* BFFoodReport.h */,
+				DCF35FBB1A79411500875717 /* BFFoodReport.m */,
+				DCF35FBD1A79423700875717 /* BFRestKitManager.h */,
+				DCF35FBE1A79423700875717 /* BFRestKitManager.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		DCF35FB91A793C8400875717 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DCF35F911A78C93800875717 /* BFFeedViewController.h */,
+				DCF35F921A78C93800875717 /* BFFeedViewController.m */,
+				DCF35FB21A78F7AC00875717 /* BFReportDetailViewController.h */,
+				DCF35FB31A78F7AC00875717 /* BFReportDetailViewController.m */,
+				DCF35FCF1A79706300875717 /* BFContributeViewController.h */,
+				DCF35FD01A79706300875717 /* BFContributeViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		DCF35FC61A794A8E00875717 /* Tap Detection */ = {
+			isa = PBXGroup;
+			children = (
+				DCF35FC01A794A5500875717 /* TSCoreMotionListener.h */,
+				DCF35FC11A794A5500875717 /* TSCoreMotionListener.m */,
+				DCF35FC21A794A5500875717 /* TSTapDetector.h */,
+				DCF35FC31A794A5500875717 /* TSTapDetector.m */,
+				DCF35FC71A794AFA00875717 /* ARAudioRecognizer.h */,
+				DCF35FC81A794AFA00875717 /* ARAudioRecognizer.m */,
+				DCF35FC91A794AFA00875717 /* ARAudioRecognizerDelegate.h */,
+			);
+			name = "Tap Detection";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DCF35F861A78C93800875717 /* BiteFeed */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCF35FAA1A78C93800875717 /* Build configuration list for PBXNativeTarget "BiteFeed" */;
+			buildPhases = (
+				D57CDD945A4859F41DFB7108 /* Check Pods Manifest.lock */,
+				DCF35F831A78C93800875717 /* Sources */,
+				DCF35F841A78C93800875717 /* Frameworks */,
+				DCF35F851A78C93800875717 /* Resources */,
+				BB996A2C5474E15D22A5A65C /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BiteFeed;
+			productName = BiteFeed;
+			productReference = DCF35F871A78C93800875717 /* BiteFeed.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DCF35F9F1A78C93800875717 /* BiteFeedTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCF35FAD1A78C93800875717 /* Build configuration list for PBXNativeTarget "BiteFeedTests" */;
+			buildPhases = (
+				DCF35F9C1A78C93800875717 /* Sources */,
+				DCF35F9D1A78C93800875717 /* Frameworks */,
+				DCF35F9E1A78C93800875717 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DCF35FA21A78C93800875717 /* PBXTargetDependency */,
+			);
+			name = BiteFeedTests;
+			productName = BiteFeedTests;
+			productReference = DCF35FA01A78C93800875717 /* BiteFeedTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DCF35F7F1A78C93800875717 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = Delta;
+				TargetAttributes = {
+					DCF35F861A78C93800875717 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					DCF35F9F1A78C93800875717 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = DCF35F861A78C93800875717;
+					};
+				};
+			};
+			buildConfigurationList = DCF35F821A78C93800875717 /* Build configuration list for PBXProject "BiteFeed" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DCF35F7E1A78C93800875717;
+			productRefGroup = DCF35F881A78C93800875717 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DCF35F861A78C93800875717 /* BiteFeed */,
+				DCF35F9F1A78C93800875717 /* BiteFeedTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DCF35F851A78C93800875717 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCF35F961A78C93800875717 /* Main.storyboard in Resources */,
+				DCF35F9B1A78C93800875717 /* LaunchScreen.xib in Resources */,
+				DCF35F981A78C93800875717 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCF35F9E1A78C93800875717 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BB996A2C5474E15D22A5A65C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D57CDD945A4859F41DFB7108 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DCF35F831A78C93800875717 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCF35F931A78C93800875717 /* BFFeedViewController.m in Sources */,
+				DCF35FBC1A79411500875717 /* BFFoodReport.m in Sources */,
+				DCF35FD11A79706300875717 /* BFContributeViewController.m in Sources */,
+				DCF35F901A78C93800875717 /* AppDelegate.m in Sources */,
+				DCF35FCA1A794AFA00875717 /* ARAudioRecognizer.m in Sources */,
+				DCF35F8D1A78C93800875717 /* main.m in Sources */,
+				DCF35FC51A794A5500875717 /* TSTapDetector.m in Sources */,
+				DCF35FC41A794A5500875717 /* TSCoreMotionListener.m in Sources */,
+				DCF35FB71A793C6700875717 /* BFVerifiedFoodReport.m in Sources */,
+				DCF35FB41A78F7AC00875717 /* BFReportDetailViewController.m in Sources */,
+				DCF35FBF1A79423700875717 /* BFRestKitManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCF35F9C1A78C93800875717 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCF35FA71A78C93800875717 /* BiteFeedTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DCF35FA21A78C93800875717 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DCF35F861A78C93800875717 /* BiteFeed */;
+			targetProxy = DCF35FA11A78C93800875717 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DCF35F941A78C93800875717 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DCF35F951A78C93800875717 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DCF35F991A78C93800875717 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DCF35F9A1A78C93800875717 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DCF35FA81A78C93800875717 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DCF35FA91A78C93800875717 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DCF35FAB1A78C93800875717 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2AD701A48F224D93DE8475C7 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = BiteFeed/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DCF35FAC1A78C93800875717 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C7321AF38F5D1F5FAE88F6F /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = BiteFeed/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		DCF35FAE1A78C93800875717 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = BiteFeedTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BiteFeed.app/BiteFeed";
+			};
+			name = Debug;
+		};
+		DCF35FAF1A78C93800875717 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = BiteFeedTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BiteFeed.app/BiteFeed";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DCF35F821A78C93800875717 /* Build configuration list for PBXProject "BiteFeed" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCF35FA81A78C93800875717 /* Debug */,
+				DCF35FA91A78C93800875717 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DCF35FAA1A78C93800875717 /* Build configuration list for PBXNativeTarget "BiteFeed" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCF35FAB1A78C93800875717 /* Debug */,
+				DCF35FAC1A78C93800875717 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DCF35FAD1A78C93800875717 /* Build configuration list for PBXNativeTarget "BiteFeedTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCF35FAE1A78C93800875717 /* Debug */,
+				DCF35FAF1A78C93800875717 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DCF35F7F1A78C93800875717 /* Project object */;
+}

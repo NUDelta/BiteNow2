@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		60BBDC265D91F00C47CEBC2F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 022D51CA9BF2D664F526DFF3 /* libPods.a */; };
+		DC6F35A31A82D09300D676B1 /* BFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6F35A21A82D09300D676B1 /* BFLoginViewController.m */; };
+		DC6F35A61A82D5A000D676B1 /* BFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6F35A51A82D5A000D676B1 /* BFUser.m */; };
+		DC6F35A81A83F81E00D676B1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6F35A71A83F81E00D676B1 /* CoreData.framework */; };
 		DCF35F8D1A78C93800875717 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35F8C1A78C93800875717 /* main.m */; };
 		DCF35F901A78C93800875717 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35F8F1A78C93800875717 /* AppDelegate.m */; };
 		DCF35F931A78C93800875717 /* BFFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35F921A78C93800875717 /* BFFeedViewController.m */; };
@@ -42,6 +45,11 @@
 		022D51CA9BF2D664F526DFF3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AD701A48F224D93DE8475C7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		2C7321AF38F5D1F5FAE88F6F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		DC6F35A11A82D09300D676B1 /* BFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFLoginViewController.h; sourceTree = "<group>"; };
+		DC6F35A21A82D09300D676B1 /* BFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFLoginViewController.m; sourceTree = "<group>"; };
+		DC6F35A41A82D5A000D676B1 /* BFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFUser.h; sourceTree = "<group>"; };
+		DC6F35A51A82D5A000D676B1 /* BFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFUser.m; sourceTree = "<group>"; };
+		DC6F35A71A83F81E00D676B1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		DCF35F871A78C93800875717 /* BiteFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BiteFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF35F8B1A78C93800875717 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCF35F8C1A78C93800875717 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -82,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC6F35A81A83F81E00D676B1 /* CoreData.framework in Frameworks */,
 				DCF35FCE1A794B1600875717 /* CoreLocation.framework in Frameworks */,
 				DCF35FCC1A794B0C00875717 /* CoreMotion.framework in Frameworks */,
 				DCF35FB11A78F42F00875717 /* MapKit.framework in Frameworks */,
@@ -111,6 +120,8 @@
 		5523684D9CEAFCCD78386310 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DC6F35A71A83F81E00D676B1 /* CoreData.framework */,
+				DCF35FB01A78F42F00875717 /* MapKit.framework */,
 				DCF35FCD1A794B1600875717 /* CoreLocation.framework */,
 				DCF35FCB1A794B0C00875717 /* CoreMotion.framework */,
 				022D51CA9BF2D664F526DFF3 /* libPods.a */,
@@ -121,7 +132,6 @@
 		DCF35F7E1A78C93800875717 = {
 			isa = PBXGroup;
 			children = (
-				DCF35FB01A78F42F00875717 /* MapKit.framework */,
 				DCF35F891A78C93800875717 /* BiteFeed */,
 				DCF35FA31A78C93800875717 /* BiteFeedTests */,
 				DCF35F881A78C93800875717 /* Products */,
@@ -190,6 +200,8 @@
 				DCF35FBB1A79411500875717 /* BFFoodReport.m */,
 				DCF35FBD1A79423700875717 /* BFRestKitManager.h */,
 				DCF35FBE1A79423700875717 /* BFRestKitManager.m */,
+				DC6F35A41A82D5A000D676B1 /* BFUser.h */,
+				DC6F35A51A82D5A000D676B1 /* BFUser.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -203,6 +215,8 @@
 				DCF35FB31A78F7AC00875717 /* BFReportDetailViewController.m */,
 				DCF35FCF1A79706300875717 /* BFContributeViewController.h */,
 				DCF35FD01A79706300875717 /* BFContributeViewController.m */,
+				DC6F35A11A82D09300D676B1 /* BFLoginViewController.h */,
+				DC6F35A21A82D09300D676B1 /* BFLoginViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -362,7 +376,9 @@
 				DCF35F901A78C93800875717 /* AppDelegate.m in Sources */,
 				DCF35FCA1A794AFA00875717 /* ARAudioRecognizer.m in Sources */,
 				DCF35F8D1A78C93800875717 /* main.m in Sources */,
+				DC6F35A31A82D09300D676B1 /* BFLoginViewController.m in Sources */,
 				DCF35FC51A794A5500875717 /* TSTapDetector.m in Sources */,
+				DC6F35A61A82D5A000D676B1 /* BFUser.m in Sources */,
 				DCF35FC41A794A5500875717 /* TSCoreMotionListener.m in Sources */,
 				DCF35FB71A793C6700875717 /* BFVerifiedFoodReport.m in Sources */,
 				DCF35FB41A78F7AC00875717 /* BFReportDetailViewController.m in Sources */,

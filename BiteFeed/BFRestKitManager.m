@@ -74,16 +74,6 @@
     [[RKObjectManager sharedManager] addResponseDescriptor:responseDescriptor];
 }
 /*http://gaze-prod.herokuapp.com/api/v1/answers/new?answer[user_id]=%ld&answer[task_id]=%ld&answer[value]=%@*/
--(void)updateUserLocation
-{
-    //NSDictionary *params = @{@"user_id" : [BFUser user].uniqueId, @"lat" : [BFUser user].lat, @"lon" : [BFUser user].lon };
-    NSDictionary *params = @{@"user_id" : [NSNumber numberWithInt:5], @"lat" : [NSNumber numberWithDouble:42.0478396], @"lon" : [NSNumber numberWithDouble:-87.6807489]};
-    [[RKObjectManager sharedManager] getObjectsAtPath:@"locations/new" parameters:params
-        success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-            NSLog(@"%@", mappingResult);
-        } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-            NSLog(error.description);
-        }];
-}
+
 
 @end

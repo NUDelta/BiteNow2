@@ -20,7 +20,33 @@
     // Override point for customization after application launch.
     [BFRestKitManager sharedManager];
     //[self presentAlertViewFromVisibleController];
+    [self beginLocationTracking];
     return YES;
+}
+
+-(void)beginLocationTracking
+{
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+        [self.locationManager requestAlwaysAuthorization];
+    }
+    [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{}];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    [self.locationManager startUpdatingLocation];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    if (status == kCLAuthorizationStatusAuthorizedAlways) {
+        [self.locationManager startUpdatingLocation];
+    }
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    
 }
 
 -(void)presentAlertViewFromVisibleController

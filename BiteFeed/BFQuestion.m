@@ -11,3 +11,7 @@
 @implementation BFQuestion
 
 @end
+
+@implementation BFQuestionOption
+
+@end

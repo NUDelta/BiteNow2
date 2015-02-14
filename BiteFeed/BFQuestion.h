@@ -19,3 +19,9 @@
 @property (strong, nonatomic) NSDate *updatedAt;
 
 @end
+
+@interface BFQuestionOption : NSObject
+
+@property (strong, nonatomic) NSString *option;
+
+@end

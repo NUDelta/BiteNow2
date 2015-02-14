@@ -13,7 +13,8 @@
 #import <RestKit/CoreData.h>
 
 // set the API URL dynamically based on environment
-#define BASE_URL (@"http://gazetapshare.herokuapp.com/api/v1/")
+#define LOCAL_URL (@"http://gazetapshare.herokuapp.com/api/v1/")
+#define LOCAL_URL (@"http://localhost:3000/api/v1/")
 
 @implementation BFRestKitManager
 
@@ -62,8 +63,8 @@
 
 -(void)initRKObjectManagerAndRouter
 {
-    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:BASE_URL]];
-    RKRouter *router = [[RKRouter alloc] initWithBaseURL:[NSURL URLWithString:BASE_URL]];
+    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:LOCAL_URL]];
+    RKRouter *router = [[RKRouter alloc] initWithBaseURL:[NSURL URLWithString:LOCAL_URL]];
     objectManager.router = router;
 }
 
@@ -71,7 +72,7 @@
 {
     [self initBFVerifiedFoodReportObjectMapping];
     [self initBFFoodReportObjectMapping];
-    [self initBFEventObjectMapping];
+    [self initBFQuestionObjectMapping];
     [self initBFUserObjectMapping];
     [self initBFUserUpdateObjectMapping];
 }
@@ -170,19 +171,21 @@
     [[RKObjectManager sharedManager] addResponseDescriptor:responseDescriptor];
 }
 
--(void)initBFEventObjectMapping
+-(void)initBFQuestionObjectMapping
 {
-    RKObjectMapping *eventMapping = [RKObjectMapping mappingForClass:[BFQuestion class]];
-    [eventMapping addAttributeMappingsFromDictionary:@{
+    RKObjectMapping *optionsMapping = [RKObjectMapping mappingForClass:[BFQuestionOption class]];
+    [optionsMapping addPropertyMapping: [RKAttributeMapping attributeMappingFromKeyPath:nil toKeyPath:@"option"]];
+    RKObjectMapping *questionMapping = [RKObjectMapping mappingForClass:[BFQuestion class]];
+    [questionMapping addAttributeMappingsFromDictionary:@{
                                                        @"id": @"uniqueId",
-                                                       @"user_id": @"userId",
-                                                         @"lat": @"lat",
-                                                         @"lng": @"lng",
-                                                         @"task_id": @"taskId",
+                                                       @"task_id": @"taskId",
+                                                         @"sequence_num": @"sequenceNum",
+                                                         @"question_text": @"questionText",
                                                        @"created_at": @"createdAt",
                                                        @"updated_at": @"updatedAt"
                                                          }];
-    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:eventMapping method:RKRequestMethodAny pathPattern:@"event/new" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    [questionMapping addPropertyMapping: [RKRelationshipMapping relationshipMappingFromKeyPath:@"question_options" toKeyPath:@"questionOptions" withMapping:optionsMapping]];
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:questionMapping method:RKRequestMethodAny pathPattern:@"event/new" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     [[RKObjectManager sharedManager] addResponseDescriptor:responseDescriptor];
 }
 

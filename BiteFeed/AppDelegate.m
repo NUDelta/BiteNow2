@@ -89,13 +89,14 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    BFQuestion *event = [[BFQuestion alloc] init];
+    BFQuestion *question = [[BFQuestion alloc] init];
     CLLocation *location = [locations lastObject];
     if ([BFUser fetchUser].username.length > 0) {
-        [[RKObjectManager sharedManager] getObject:event path:@"events/new" parameters:@{@"event[lat]":[NSNumber numberWithDouble:location.coordinate.latitude], @"event[lng]": [NSNumber numberWithDouble:location.coordinate.longitude], @"username":[[BFUser fetchUser] uniqueId]} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-            NSLog(event);
+        [[RKObjectManager sharedManager] getObject:question path:@"events/new" parameters:@{@"event[lat]":[NSNumber numberWithDouble:location.coordinate.latitude], @"event[lng]": [NSNumber numberWithDouble:location.coordinate.longitude], @"username":[[BFUser fetchUser] uniqueId]} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+//            NSLog(event);
+            NSLog(mappingResult.description);
         } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-            
+            NSLog(error.description);
         }];
     }
 }

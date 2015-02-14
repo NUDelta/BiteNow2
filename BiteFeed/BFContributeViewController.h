@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreLocation/CoreLocation.h>
-#import "TSTapDetector.h"
 
-@interface BFContributeViewController : UIViewController <CLLocationManagerDelegate, TSTapDetectorDelegate>
+@interface BFContributeViewController : UIViewController
 
--(void)detectorDidDetectTap:(TSTapDetector *)detector;
 
 @end

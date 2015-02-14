@@ -8,8 +8,12 @@
 
 #import "AppDelegate.h"
 #import "BFRestKitManager.h"
+#import "BFUser.h"
+#import "BFQuestion.h"
 
 @interface AppDelegate ()
+
+@property (strong, nonatomic) TSTapDetector *tapDetector;
 
 @end
 
@@ -18,10 +22,35 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [BFRestKitManager sharedManager];
+    [self setRootViewController];
     //[self presentAlertViewFromVisibleController];
     [self beginLocationTracking];
+    [self initTapDetection];
     return YES;
+}
+
+-(void)setRootViewController
+{
+    BFRestKitManager *manager = [BFRestKitManager sharedManager];
+    NSManagedObjectContext *context = manager.managedObjectContext;
+    if (context) {
+        BFUser *user;
+        @try {
+            user = [BFUser fetchUser];
+        } @catch (NSException *multiUserException) {
+            if ([multiUserException.name isEqualToString:@"MultipleUserException"]) {
+                NSLog(@"Resolving to arbitrary first user login record");
+            }
+        }
+        if (user.username.length == 0) {
+            UIViewController *login = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"login"];
+            self.window.rootViewController = login;
+        } else {
+            NSLog(@"%@", user.email);
+            UIViewController *home = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"home"];
+            self.window.rootViewController = home;
+        }
+    }
 }
 
 -(void)beginLocationTracking
@@ -37,6 +66,13 @@
     [self.locationManager startUpdatingLocation];
 }
 
+-(void)initTapDetection
+{
+    self.tapDetector = [[TSTapDetector alloc] init];
+    [self.tapDetector.listener collectMotionInformationWithInterval:10];
+    self.tapDetector.delegate = self;
+}
+
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
     if (status == kCLAuthorizationStatusAuthorizedAlways) {
@@ -44,9 +80,24 @@
     }
 }
 
+-(void)detectorDidDetectTap:(TSTapDetector *)detector
+{
+    /* hit zak's endpoint to create a new task */
+    NSLog(@"current location: %f", self.locationManager.location.coordinate.latitude);
+    [[BFFoodReport foodReportWithLat:[NSNumber numberWithDouble:self.locationManager.location.coordinate.latitude] Lon:[NSNumber numberWithDouble:self.locationManager.location.coordinate.longitude]] postReport];
+}
+
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    
+    BFQuestion *event = [[BFQuestion alloc] init];
+    CLLocation *location = [locations lastObject];
+    if ([BFUser fetchUser].username.length > 0) {
+        [[RKObjectManager sharedManager] getObject:event path:@"events/new" parameters:@{@"event[lat]":[NSNumber numberWithDouble:location.coordinate.latitude], @"event[lng]": [NSNumber numberWithDouble:location.coordinate.longitude], @"username":[[BFUser fetchUser] uniqueId]} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+            NSLog(event);
+        } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+            
+        }];
+    }
 }
 
 -(void)presentAlertViewFromVisibleController

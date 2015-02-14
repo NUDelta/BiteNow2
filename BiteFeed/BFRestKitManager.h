@@ -14,6 +14,10 @@
 
 @interface BFRestKitManager : NSObject
 
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, strong) NSString *persistentStorePath;
+
 +(BFRestKitManager *)sharedManager;
 -(void)updateUserLocation;
 

@@ -2,16 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>audio</string>
-		<string>remote-notification</string>
-		<string>location</string>
-	</array>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>BiteFeed uses your location when you report and receive news about tasty free food.</string>
-	<key>NSLocationUsageDescription</key>
-	<string>BiteFeed uses your location when you report and receive news about tasty free food.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -32,6 +22,16 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>BiteFeed uses your location when you report and receive news about tasty free food.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>BiteFeed uses your location when you report and receive news about tasty free food.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>remote-notification</string>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

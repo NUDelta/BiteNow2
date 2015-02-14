@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="KOu-n9-S9w">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ilB-G0-pR6">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -244,7 +244,7 @@
         <!--Me-->
         <scene sceneID="11B-9g-ofs">
             <objects>
-                <viewController id="V85-8v-C3M" sceneMemberID="viewController">
+                <viewController id="V85-8v-C3M" customClass="BFSettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y0R-8U-0M2"/>
                         <viewControllerLayoutGuide type="bottom" id="2SB-6s-vhR"/>
@@ -261,12 +261,21 @@
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Vs-DK-Fg3">
                                 <rect key="frame" x="535" y="341" width="51" height="31"/>
+                                <connections>
+                                    <action selector="foodNotificationSwitchChanged:" destination="V85-8v-C3M" eventType="valueChanged" id="xaF-6q-5dJ"/>
+                                </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BSN-g0-vGD">
                                 <rect key="frame" x="535" y="385" width="51" height="31"/>
+                                <connections>
+                                    <action selector="verifyReportsSwitchChanged:" destination="V85-8v-C3M" eventType="valueChanged" id="aj9-KC-Use"/>
+                                </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Ls-DV-AIv">
                                 <rect key="frame" x="535" y="430" width="51" height="31"/>
+                                <connections>
+                                    <action selector="dailyRemindersSwitchChanged:" destination="V85-8v-C3M" eventType="valueChanged" id="RY4-3p-r8J"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Food Notifications" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Lg-gk-B75">
                                 <rect key="frame" x="16" y="346" width="161" height="21"/>
@@ -349,6 +358,12 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Me" image="TabUser" id="mZB-Z2-2mh"/>
+                    <connections>
+                        <outlet property="dailyRemindersSwitch" destination="4Ls-DV-AIv" id="WPV-Nd-Lwv"/>
+                        <outlet property="foodNotificationSwitch" destination="4Vs-DK-Fg3" id="iga-O0-XVp"/>
+                        <outlet property="userLabel" destination="6eg-bF-hn2" id="js6-9c-X7g"/>
+                        <outlet property="verifyReportsSwitch" destination="BSN-g0-vGD" id="tmH-5G-SRe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I7m-RT-jpG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -357,7 +372,7 @@
         <!--Login View Controller-->
         <scene sceneID="0ez-Jl-wvy">
             <objects>
-                <viewController id="ilB-G0-pR6" customClass="BFLoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="login" id="ilB-G0-pR6" customClass="BFLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5N7-gN-28j"/>
                         <viewControllerLayoutGuide type="bottom" id="QOd-rw-g3c"/>
@@ -374,17 +389,26 @@
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter a username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hYa-SP-FlP">
                                 <rect key="frame" x="193" y="144" width="214" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="hYa-SP-FlP" secondAttribute="height" multiplier="107:15" id="70x-Zl-H0p"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter your email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CHa-Nu-4WC">
                                 <rect key="frame" x="193" y="182" width="214" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="CHa-Nu-4WC" secondAttribute="height" multiplier="107:15" id="qDK-6P-fQf"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3h-IW-jbz">
                                 <rect key="frame" x="193" y="256" width="214" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="n3h-IW-jbz" secondAttribute="height" multiplier="107:15" id="VGQ-QN-rCy"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="start">
                                     <color key="titleColor" red="0.8980392157" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -410,6 +434,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="CHa-Nu-4WC" id="kUd-Q1-nvK"/>
                         <outlet property="usernameTextField" destination="hYa-SP-FlP" id="Zcy-Z8-E9N"/>
+                        <segue destination="KOu-n9-S9w" kind="show" identifier="loggedIn" id="dax-oU-4bO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CmK-dt-KOR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -419,7 +444,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="Nbw-NI-g0s">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="KOu-n9-S9w" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="home" automaticallyAdjustsScrollViewInsets="NO" id="KOu-n9-S9w" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="8TN-Uj-vhA">

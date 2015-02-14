@@ -8,9 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		60BBDC265D91F00C47CEBC2F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 022D51CA9BF2D664F526DFF3 /* libPods.a */; };
+		DC647A3E1A8B07D80011C2A4 /* BFQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = DC647A3D1A8B07D80011C2A4 /* BFQuestion.m */; };
+		DC647A411A8B14550011C2A4 /* BFSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC647A401A8B14550011C2A4 /* BFSettingsViewController.m */; };
 		DC6F35A31A82D09300D676B1 /* BFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6F35A21A82D09300D676B1 /* BFLoginViewController.m */; };
 		DC6F35A61A82D5A000D676B1 /* BFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6F35A51A82D5A000D676B1 /* BFUser.m */; };
 		DC6F35A81A83F81E00D676B1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6F35A71A83F81E00D676B1 /* CoreData.framework */; };
+		DC9677F91A881FC60019F99D /* BFDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC9677F71A881FC60019F99D /* BFDataModel.xcdatamodeld */; };
 		DCF35F8D1A78C93800875717 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35F8C1A78C93800875717 /* main.m */; };
 		DCF35F901A78C93800875717 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35F8F1A78C93800875717 /* AppDelegate.m */; };
 		DCF35F931A78C93800875717 /* BFFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35F921A78C93800875717 /* BFFeedViewController.m */; };
@@ -45,12 +48,18 @@
 		022D51CA9BF2D664F526DFF3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AD701A48F224D93DE8475C7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		2C7321AF38F5D1F5FAE88F6F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		DC647A3C1A8B07D80011C2A4 /* BFQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFQuestion.h; sourceTree = "<group>"; };
+		DC647A3D1A8B07D80011C2A4 /* BFQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFQuestion.m; sourceTree = "<group>"; };
+		DC647A3F1A8B14550011C2A4 /* BFSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFSettingsViewController.h; sourceTree = "<group>"; };
+		DC647A401A8B14550011C2A4 /* BFSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFSettingsViewController.m; sourceTree = "<group>"; };
 		DC6F35A11A82D09300D676B1 /* BFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFLoginViewController.h; sourceTree = "<group>"; };
 		DC6F35A21A82D09300D676B1 /* BFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFLoginViewController.m; sourceTree = "<group>"; };
 		DC6F35A41A82D5A000D676B1 /* BFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFUser.h; sourceTree = "<group>"; };
 		DC6F35A51A82D5A000D676B1 /* BFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFUser.m; sourceTree = "<group>"; };
 		DC6F35A71A83F81E00D676B1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		DCF35F871A78C93800875717 /* BiteFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BiteFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC6F35AC1A8404A400D676B1 /* BFPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BFPrefixHeader.pch; sourceTree = "<group>"; };
+		DC9677F81A881FC60019F99D /* BFDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BFDataModel.xcdatamodel; sourceTree = "<group>"; };
+		DCF35F871A78C93800875717 /* TapShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF35F8B1A78C93800875717 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCF35F8C1A78C93800875717 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DCF35F8E1A78C93800875717 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -143,7 +152,7 @@
 		DCF35F881A78C93800875717 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DCF35F871A78C93800875717 /* BiteFeed.app */,
+				DCF35F871A78C93800875717 /* TapShare.app */,
 				DCF35FA01A78C93800875717 /* BiteFeedTests.xctest */,
 			);
 			name = Products;
@@ -152,6 +161,7 @@
 		DCF35F891A78C93800875717 /* BiteFeed */ = {
 			isa = PBXGroup;
 			children = (
+				DC9677F71A881FC60019F99D /* BFDataModel.xcdatamodeld */,
 				DCF35F8E1A78C93800875717 /* AppDelegate.h */,
 				DCF35F8F1A78C93800875717 /* AppDelegate.m */,
 				DCF35FC61A794A8E00875717 /* Tap Detection */,
@@ -168,6 +178,7 @@
 		DCF35F8A1A78C93800875717 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DC6F35AC1A8404A400D676B1 /* BFPrefixHeader.pch */,
 				DCF35F8B1A78C93800875717 /* Info.plist */,
 				DCF35F8C1A78C93800875717 /* main.m */,
 			);
@@ -202,6 +213,8 @@
 				DCF35FBE1A79423700875717 /* BFRestKitManager.m */,
 				DC6F35A41A82D5A000D676B1 /* BFUser.h */,
 				DC6F35A51A82D5A000D676B1 /* BFUser.m */,
+				DC647A3C1A8B07D80011C2A4 /* BFQuestion.h */,
+				DC647A3D1A8B07D80011C2A4 /* BFQuestion.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -217,6 +230,8 @@
 				DCF35FD01A79706300875717 /* BFContributeViewController.m */,
 				DC6F35A11A82D09300D676B1 /* BFLoginViewController.h */,
 				DC6F35A21A82D09300D676B1 /* BFLoginViewController.m */,
+				DC647A3F1A8B14550011C2A4 /* BFSettingsViewController.h */,
+				DC647A401A8B14550011C2A4 /* BFSettingsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -254,7 +269,7 @@
 			);
 			name = BiteFeed;
 			productName = BiteFeed;
-			productReference = DCF35F871A78C93800875717 /* BiteFeed.app */;
+			productReference = DCF35F871A78C93800875717 /* TapShare.app */;
 			productType = "com.apple.product-type.application";
 		};
 		DCF35F9F1A78C93800875717 /* BiteFeedTests */ = {
@@ -371,16 +386,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCF35F931A78C93800875717 /* BFFeedViewController.m in Sources */,
+				DC9677F91A881FC60019F99D /* BFDataModel.xcdatamodeld in Sources */,
 				DCF35FBC1A79411500875717 /* BFFoodReport.m in Sources */,
 				DCF35FD11A79706300875717 /* BFContributeViewController.m in Sources */,
 				DCF35F901A78C93800875717 /* AppDelegate.m in Sources */,
 				DCF35FCA1A794AFA00875717 /* ARAudioRecognizer.m in Sources */,
 				DCF35F8D1A78C93800875717 /* main.m in Sources */,
 				DC6F35A31A82D09300D676B1 /* BFLoginViewController.m in Sources */,
+				DC647A3E1A8B07D80011C2A4 /* BFQuestion.m in Sources */,
 				DCF35FC51A794A5500875717 /* TSTapDetector.m in Sources */,
 				DC6F35A61A82D5A000D676B1 /* BFUser.m in Sources */,
 				DCF35FC41A794A5500875717 /* TSCoreMotionListener.m in Sources */,
 				DCF35FB71A793C6700875717 /* BFVerifiedFoodReport.m in Sources */,
+				DC647A411A8B14550011C2A4 /* BFSettingsViewController.m in Sources */,
 				DCF35FB41A78F7AC00875717 /* BFReportDetailViewController.m in Sources */,
 				DCF35FBF1A79423700875717 /* BFRestKitManager.m in Sources */,
 			);
@@ -441,6 +459,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stephen Chan (J3J8FQDHME)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -482,7 +501,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stephen Chan (J3J8FQDHME)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Northwestern University";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -505,10 +525,14 @@
 			baseConfigurationReference = 2AD701A48F224D93DE8475C7 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BiteFeed/BFPrefixHeader.pch;
 				INFOPLIST_FILE = BiteFeed/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TapShare;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -517,10 +541,14 @@
 			baseConfigurationReference = 2C7321AF38F5D1F5FAE88F6F /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BiteFeed/BFPrefixHeader.pch;
 				INFOPLIST_FILE = BiteFeed/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TapShare;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -589,6 +617,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DC9677F71A881FC60019F99D /* BFDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DC9677F81A881FC60019F99D /* BFDataModel.xcdatamodel */,
+			);
+			currentVersion = DC9677F81A881FC60019F99D /* BFDataModel.xcdatamodel */;
+			path = BFDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DCF35F7F1A78C93800875717 /* Project object */;
 }

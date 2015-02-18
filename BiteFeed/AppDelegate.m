@@ -14,6 +14,7 @@
 @interface AppDelegate ()
 
 @property (strong, nonatomic) TSTapDetector *tapDetector;
+@property (strong, nonatomic) NSMutableArray *eventIdArray;
 
 @end
 
@@ -26,6 +27,26 @@
     //[self presentAlertViewFromVisibleController];
     [self beginLocationTracking];
     [self initTapDetection];
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)] ) {
+        UIMutableUserNotificationCategory* actionCategory =[[UIMutableUserNotificationCategory alloc] init];
+        actionCategory.identifier = @"YesMaybeNo";
+        UIMutableUserNotificationAction* actionYes = [[UIMutableUserNotificationAction alloc] init];
+        actionYes.title = @"Yes";
+        actionYes.identifier = @"actionYes";
+        actionYes.authenticationRequired = NO;
+        actionYes.activationMode = UIUserNotificationActivationModeBackground;
+        UIMutableUserNotificationAction* actionNo = [[UIMutableUserNotificationAction alloc] init];
+        actionNo.title = @"No";
+        actionNo.identifier = @"actionNo";
+        actionNo.authenticationRequired = NO;
+        actionNo.activationMode = UIUserNotificationActivationModeBackground;
+        NSArray* userNotificationActions = @[actionYes, actionNo];
+        [actionCategory setActions:userNotificationActions forContext:UIUserNotificationActionContextDefault];
+        NSArray* actionCategories = @[actionCategory];
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:actionCategories]];
+    } else {
+        [application registerForRemoteNotifications];
+    }
     return YES;
 }
 
@@ -92,12 +113,34 @@
     BFQuestion *question = [[BFQuestion alloc] init];
     CLLocation *location = [locations lastObject];
     if ([BFUser fetchUser].username.length > 0) {
-        [[RKObjectManager sharedManager] getObject:question path:@"events/new" parameters:@{@"event[lat]":[NSNumber numberWithDouble:location.coordinate.latitude], @"event[lng]": [NSNumber numberWithDouble:location.coordinate.longitude], @"username":[[BFUser fetchUser] uniqueId]} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-//            NSLog(event);
-            NSLog(mappingResult.description);
-        } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-            NSLog(error.description);
+//        NSString *urlRequestString = [NSString stringWithFormat:@"http://gazetapshare.herokuapp.com/api/v1/events/new?event[lat]=%f&event[lng]=%f&username=%@", location.coordinate.latitude, location.coordinate.longitude, [BFUser fetchUser].username];
+        NSString *urlRequestString = [NSString stringWithFormat:@"http://localhost:3000/api/v1/events/new?event[lat]=%f&event[lng]=%f&username=%@", location.coordinate.latitude, location.coordinate.longitude, [BFUser fetchUser].username];
+        
+        NSLog(urlRequestString);
+        [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlRequestString]] queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            if (!connectionError) {
+                NSError *JSONError = nil;
+                NSDictionary* eventResponse = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&JSONError];
+                if (eventResponse) {
+                    NSNumber *eventId = [eventResponse objectForKey:@"id"];
+                    if (![self.eventIdArray containsObject:eventId]) {
+                        [self.eventIdArray addObject:eventId];
+                        UILocalNotification *eventNotification = [[UILocalNotification alloc] init];
+                        eventNotification.alertBody = [eventResponse objectForKey:@"question_text"];
+                        eventNotification.hasAction = YES;
+                        eventNotification.category = @"YesMaybeNo";
+                        //                    eventNotification.soundName = UILocalNotificationDefaultSoundName;
+                        [[UIApplication sharedApplication] presentLocalNotificationNow:eventNotification];
+                    }
+                }
+            }
         }];
+//        [[RKObjectManager sharedManager] getObject:question path:@"events/new" parameters:@{@"event[lat]":[NSNumber numberWithDouble:location.coordinate.latitude], @"event[lng]": [NSNumber numberWithDouble:location.coordinate.longitude], @"username":[[BFUser fetchUser] uniqueId]} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+////            NSLog(event);
+//            NSLog(mappingResult.description);
+//        } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+//            NSLog(error.description);
+//        }];
     }
 }
 

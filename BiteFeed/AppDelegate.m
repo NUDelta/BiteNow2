@@ -47,6 +47,7 @@
     } else {
         [application registerForRemoteNotifications];
     }
+    self.eventIdArray = [[NSMutableArray alloc] init];
     return YES;
 }
 
@@ -121,9 +122,11 @@
             if (!connectionError) {
                 NSError *JSONError = nil;
                 NSDictionary* eventResponse = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&JSONError];
+                
                 if (eventResponse) {
                     NSNumber *eventId = [eventResponse objectForKey:@"id"];
                     if (![self.eventIdArray containsObject:eventId]) {
+                        NSLog(@"%@", eventId);
                         [self.eventIdArray addObject:eventId];
                         UILocalNotification *eventNotification = [[UILocalNotification alloc] init];
                         eventNotification.alertBody = [eventResponse objectForKey:@"question_text"];
@@ -131,6 +134,8 @@
                         eventNotification.category = @"YesMaybeNo";
                         //                    eventNotification.soundName = UILocalNotificationDefaultSoundName;
                         [[UIApplication sharedApplication] presentLocalNotificationNow:eventNotification];
+                    } else {
+                        NSLog(@"object found");
                     }
                 }
             }

@@ -22,7 +22,7 @@
 
 -(void)tryRestKit
 {
-    [[BFFoodReport foodReportWithLat:@45.0234 Lon:@-87.2543242] postReport];
+//    [[BFFoodReport foodReportWithLat:@45.0234 Lon:@-87.2543242] postReport];
 }
 
 - (void)didReceiveMemoryWarning {

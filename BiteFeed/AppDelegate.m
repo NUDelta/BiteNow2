@@ -106,7 +106,7 @@
 {
     /* hit zak's endpoint to create a new task */
     NSLog(@"current location: %f", self.locationManager.location.coordinate.latitude);
-    [[BFFoodReport foodReportWithLat:[NSNumber numberWithDouble:self.locationManager.location.coordinate.latitude] Lon:[NSNumber numberWithDouble:self.locationManager.location.coordinate.longitude]] postReport];
+//    [[BFFoodReport foodReportWithLat:[NSNumber numberWithDouble:self.locationManager.location.coordinate.latitude] Lon:[NSNumber numberWithDouble:self.locationManager.location.coordinate.longitude]] postReport];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations

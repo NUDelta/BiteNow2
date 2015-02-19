@@ -12,9 +12,9 @@
 @interface BFFoodReport : NSObject
 
 @property (strong, nonatomic) NSNumber *lat;
-@property (strong, nonatomic) NSNumber *lon;
+@property (strong, nonatomic) NSNumber *lng;
 
-+(instancetype)foodReportWithLat:(NSNumber *)lat Lon:(NSNumber *)lon;
++(instancetype)foodReportWithDictionary:(NSDictionary *)dictionary;
 -(void)postReport;
 
 @end

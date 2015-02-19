@@ -7,6 +7,7 @@
 //
 
 #import "BFFeedViewController.h"
+#import "BFFoodReport.h"
 
 @interface BFFeedViewController ()
 
@@ -20,6 +21,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.foodReports = [[NSMutableArray alloc] init];
     [self initTableView];
 }
 
@@ -32,6 +34,17 @@
 
 -(void)loadFoodReports
 {
+    NSString *url = @"http://localhost:3000/api/v1/tasks/verified";
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (!connectionError) {
+            NSError *JSONError = nil;
+            NSArray* verifiedReports = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&JSONError];
+            for (NSDictionary *verifiedReport in verifiedReports) {
+                [self.foodReports addObject:[BFFoodReport foodReportWithDictionary:verifiedReport]];
+            }
+            [self.feedTableView reloadData];
+        }
+    }];
     /*NSDictionary *requestParams = @{@"verified" : YES, @"lat" : , @"lon" : };
     [[RKObjectManager sharedManager] getObjectsAtPath:@"/api/v1/bars" parameters:requestParams success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult){
             self.barInfo = mappingResult.array;
@@ -68,16 +81,16 @@
 #pragma mark - table view data source methods
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    BFFoodReport *report = [self.foodReports objectAtIndex:indexPath.row];
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ReportCell"];
-    [cell.textLabel setText:@"Name of food"];
-    [cell.detailTextLabel setText:@"Distance"];
+    [cell.textLabel setText:[NSString stringWithFormat:@"lat: %@, lng: %@", report.lat, report.lng]];
+//    [cell.detailTextLabel setText:@"Distance"];
     return cell;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //TODO: remove dummy data
-    return 5;
+    return self.foodReports.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

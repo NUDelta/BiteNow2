@@ -7,7 +7,7 @@
 //
 
 #import "BFFeedViewController.h"
-#import "BFFoodReport.h"
+#import "BFFoodReportList.h"
 
 @interface BFFeedViewController ()
 
@@ -29,36 +29,13 @@
 {
     self.feedTableView.delegate = self;
     self.feedTableView.dataSource = self;
-    [self loadFoodReports];
+    self.foodReports = [BFFoodReportList sharedFoodReportList];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@" object:<#(id)#>]
 }
 
--(void)loadFoodReports
+-(void)updateTableView
 {
-    NSString *url = @"http://localhost:3000/api/v1/tasks/verified";
-    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        if (!connectionError) {
-            NSError *JSONError = nil;
-            NSArray* verifiedReports = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&JSONError];
-            for (NSDictionary *verifiedReport in verifiedReports) {
-                [self.foodReports addObject:[BFFoodReport foodReportWithDictionary:verifiedReport]];
-            }
-            [self.feedTableView reloadData];
-        }
-    }];
-    /*NSDictionary *requestParams = @{@"verified" : YES, @"lat" : , @"lon" : };
-    [[RKObjectManager sharedManager] getObjectsAtPath:@"/api/v1/bars" parameters:requestParams success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult){
-            self.barInfo = mappingResult.array;
-            [self.spinner removeFromSuperview];
-        
-            // reset update timer
-            [[WMRestKitManager sharedManager] updateUserLocation];
-            // before loading, tableview's separators are removed since the cells resize
-            [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-            [self.tableView reloadData];
-        }
-        failure:^(RKObjectRequestOperation *operation, NSError *error){
-            NSLog(@"%@", error);
-        }];*/
+    [self.feedTableView reloadData];
 }
 
 -(void)initDataRequests

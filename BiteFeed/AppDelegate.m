@@ -10,6 +10,7 @@
 #import "BFRestKitManager.h"
 #import "BFUser.h"
 #import "BFQuestion.h"
+#import "BFFoodReportList.h"
 
 @interface AppDelegate ()
 
@@ -48,6 +49,7 @@
         [application registerForRemoteNotifications];
     }
     self.eventIdArray = [[NSMutableArray alloc] init];
+    [BFFoodReportList sharedFoodReportList];
     return YES;
 }
 

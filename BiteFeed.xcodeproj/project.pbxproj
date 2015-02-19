@@ -32,6 +32,7 @@
 		DCF35FCC1A794B0C00875717 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF35FCB1A794B0C00875717 /* CoreMotion.framework */; };
 		DCF35FCE1A794B1600875717 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF35FCD1A794B1600875717 /* CoreLocation.framework */; };
 		DCF35FD11A79706300875717 /* BFContributeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35FD01A79706300875717 /* BFContributeViewController.m */; };
+		E541EE381A9681D40003459B /* BFFoodReportList.m in Sources */ = {isa = PBXBuildFile; fileRef = E541EE371A9681D40003459B /* BFFoodReportList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,8 @@
 		DCF35FCD1A794B1600875717 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DCF35FCF1A79706300875717 /* BFContributeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFContributeViewController.h; sourceTree = "<group>"; };
 		DCF35FD01A79706300875717 /* BFContributeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFContributeViewController.m; sourceTree = "<group>"; };
+		E541EE361A9681D40003459B /* BFFoodReportList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFFoodReportList.h; sourceTree = "<group>"; };
+		E541EE371A9681D40003459B /* BFFoodReportList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFFoodReportList.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +212,8 @@
 				DCF35FB61A793C6700875717 /* BFVerifiedFoodReport.m */,
 				DCF35FBA1A79411500875717 /* BFFoodReport.h */,
 				DCF35FBB1A79411500875717 /* BFFoodReport.m */,
+				E541EE361A9681D40003459B /* BFFoodReportList.h */,
+				E541EE371A9681D40003459B /* BFFoodReportList.m */,
 				DCF35FBD1A79423700875717 /* BFRestKitManager.h */,
 				DCF35FBE1A79423700875717 /* BFRestKitManager.m */,
 				DC6F35A41A82D5A000D676B1 /* BFUser.h */,
@@ -389,6 +394,7 @@
 				DC9677F91A881FC60019F99D /* BFDataModel.xcdatamodeld in Sources */,
 				DCF35FBC1A79411500875717 /* BFFoodReport.m in Sources */,
 				DCF35FD11A79706300875717 /* BFContributeViewController.m in Sources */,
+				E541EE381A9681D40003459B /* BFFoodReportList.m in Sources */,
 				DCF35F901A78C93800875717 /* AppDelegate.m in Sources */,
 				DCF35FCA1A794AFA00875717 /* ARAudioRecognizer.m in Sources */,
 				DCF35F8D1A78C93800875717 /* main.m in Sources */,

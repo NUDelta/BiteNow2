@@ -109,7 +109,12 @@
 {
     /* hit zak's endpoint to create a new task */
     NSLog(@"current location: %f", self.locationManager.location.coordinate.latitude);
-//    [[BFFoodReport foodReportWithLat:[NSNumber numberWithDouble:self.locationManager.location.coordinate.latitude] Lon:[NSNumber numberWithDouble:self.locationManager.location.coordinate.longitude]] postReport];
+    NSString *urlRequestString = [NSString stringWithFormat:@"http://localhost:3000/api/v1/tasks/new?task[lat]=%f&task[lng]=%f&task[user_id]=%ld", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude, [BFUser fetchUser].uniqueId.integerValue];
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlRequestString]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (!connectionError) {
+            NSLog(@"successfully posted task");
+        }
+    }];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations

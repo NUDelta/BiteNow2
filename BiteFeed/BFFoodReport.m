@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Delta. All rights reserved.
 //
 
+#import <CoreLocation/CoreLocation.h>
 #import "BFFoodReport.h"
 
 @implementation BFFoodReport
@@ -16,6 +17,17 @@
     report.lat = [dictionary objectForKey:@"lat"];
     report.lng = [dictionary objectForKey:@"lng"];
     return report;
+}
+
+-(BOOL) isEqual:(id)object {
+    CLLocation *reportLocation = [[CLLocation alloc] initWithLatitude:self.lat.doubleValue longitude:self.lng.doubleValue];
+    CLLocation *comparisonLocation = [[CLLocation alloc] initWithLatitude:[[object lat] doubleValue] longitude:[[object lng] doubleValue]];
+    
+    if ([reportLocation distanceFromLocation:comparisonLocation] < 0.5) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 -(void)postReport

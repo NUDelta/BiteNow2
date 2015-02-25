@@ -16,6 +16,7 @@
     static dispatch_once_t oncePredicate;
     dispatch_once(&oncePredicate, ^{
         reportList = [[BFFoodReportList alloc] init];
+        reportList.reportList = [[NSMutableArray alloc] init];
         [reportList populateReportList];
     });
     return reportList;
@@ -23,19 +24,17 @@
 
 -(void)populateReportList
 {
-    NSMutableArray *comparisonReports = [[NSMutableArray alloc] init];
     NSString *url = @"http://localhost:3000/api/v1/tasks/verified";
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (!connectionError) {
             NSError *JSONError = nil;
             NSArray* verifiedReports = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&JSONError];
             for (NSDictionary *verifiedReport in verifiedReports) {
-                [comparisonReports addObject:[BFFoodReport foodReportWithDictionary:verifiedReport]];
-            }
-            NSSet *reportSet = [NSSet setWithArray:self.reportList];
-            if (![[reportSet setByAddingObjectsFromArray:comparisonReports] isEqualToSet:reportSet]) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"reportUpdate" object:self];
-                self.reportList = comparisonReports;
+                BFFoodReport *newReport = [BFFoodReport foodReportWithDictionary:verifiedReport];
+                if (![self.reportList containsObject:newReport]) {
+                    [self.reportList addObject:newReport];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reportUpdate" object:self];
+                }
             }
         }
     }];

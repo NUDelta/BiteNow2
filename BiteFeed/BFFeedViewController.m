@@ -26,11 +26,11 @@
 
 -(void)initTableView
 {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@"reportUpdate" object:nil];
     self.feedTableView.delegate = self;
     self.feedTableView.dataSource = self;
     self.foodReports = [BFFoodReportList sharedFoodReportList];
     [self.foodReports populateReportList];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@"reportUpdate" object:nil];
 }
 
 -(void)updateTableView

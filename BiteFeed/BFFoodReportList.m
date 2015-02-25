@@ -24,7 +24,7 @@
 
 -(void)populateReportList
 {
-    NSString *url = @"http://localhost:3000/api/v1/tasks/verified";
+    NSString *url = @"http://gazetapshare.herokuapp.com/api/v1/tasks/verified";
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (!connectionError) {
             NSError *JSONError = nil;

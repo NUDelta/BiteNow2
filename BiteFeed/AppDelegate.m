@@ -78,6 +78,27 @@
     }
 }
 
+- (void)application:(UIApplication *) application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *) notification completionHandler: (void (^)()) completionHandler {
+    if ([identifier isEqualToString: @"actionYes"]) {
+        [self sendYesToQuestion:notification];
+    }
+    completionHandler();
+}
+
+-(void)sendYesToQuestion:(UILocalNotification *)notification
+{
+    NSLog(@"%@", notification);
+    
+    NSNumber *questionId = [notification.userInfo valueForKey:@"question_id"];
+    NSString *urlRequestString = [NSString stringWithFormat:@"http://gazetapshare.herokuapp.com/api/v1/answers/new?answer[question_id]=%d&answer[user_id]=%d&answer[value]=%@", questionId.intValue, [BFUser fetchUser].uniqueId.intValue, @"Yes"];
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlRequestString]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (!connectionError) {
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:nil error:nil];
+            NSLog(@"%@", responseDictionary);
+        }
+    }];
+}
+
 -(void)beginLocationTracking
 {
     self.locationManager = [[CLLocationManager alloc] init];
@@ -109,10 +130,12 @@
 {
     /* hit zak's endpoint to create a new task */
     NSLog(@"current location: %f", self.locationManager.location.coordinate.latitude);
-    NSString *urlRequestString = [NSString stringWithFormat:@"http://localhost:3000/api/v1/tasks/new?task[lat]=%f&task[lng]=%f&task[user_id]=%ld", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude, [BFUser fetchUser].uniqueId.integerValue];
+    NSString *urlRequestString = [NSString stringWithFormat:@"http://gazetapshare.herokuapp.com/api/v1/tasks/new?task[lat]=%f&task[lng]=%f&task[user_id]=%ld", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude, (long)[BFUser fetchUser].uniqueId.integerValue];
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlRequestString]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (!connectionError) {
             NSLog(@"successfully posted task");
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:nil error:nil];
+            NSLog(@"%@", responseDictionary);
         }
     }];
 }
@@ -124,7 +147,7 @@
     CLLocation *location = [locations lastObject];
     if ([BFUser fetchUser].username.length > 0) {
 //        NSString *urlRequestString = [NSString stringWithFormat:@"http://gazetapshare.herokuapp.com/api/v1/events/new?event[lat]=%f&event[lng]=%f&username=%@", location.coordinate.latitude, location.coordinate.longitude, [BFUser fetchUser].username];
-        NSString *urlRequestString = [NSString stringWithFormat:@"http://localhost:3000/api/v1/events/new?event[lat]=%f&event[lng]=%f&username=%@", location.coordinate.latitude, location.coordinate.longitude, [BFUser fetchUser].username];
+        NSString *urlRequestString = [NSString stringWithFormat:@"http://gazetapshare.herokuapp.com/api/v1/events/new?event[lat]=%f&event[lng]=%f&username=%@", location.coordinate.latitude, location.coordinate.longitude, [BFUser fetchUser].username];
         
         NSLog(urlRequestString);
         [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlRequestString]] queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
@@ -141,7 +164,7 @@
                         eventNotification.alertBody = [eventResponse objectForKey:@"question_text"];
                         eventNotification.hasAction = YES;
                         eventNotification.category = @"YesMaybeNo";
-                        //                    eventNotification.soundName = UILocalNotificationDefaultSoundName;
+                        eventNotification.userInfo = @{@"question_id" : [eventResponse objectForKey:@"id"]};
                         [[UIApplication sharedApplication] presentLocalNotificationNow:eventNotification];
                     } else {
                         NSLog(@"object found");
@@ -149,12 +172,6 @@
                 }
             }
         }];
-//        [[RKObjectManager sharedManager] getObject:question path:@"events/new" parameters:@{@"event[lat]":[NSNumber numberWithDouble:location.coordinate.latitude], @"event[lng]": [NSNumber numberWithDouble:location.coordinate.longitude], @"username":[[BFUser fetchUser] uniqueId]} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-////            NSLog(event);
-//            NSLog(mappingResult.description);
-//        } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-//            NSLog(error.description);
-//        }];
     }
 }
 

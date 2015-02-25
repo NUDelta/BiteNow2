@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "BFFoodReport.h"
 
-@interface BFFoodReportList : NSMutableArray
+@interface BFFoodReportList : NSObject
 
 +(instancetype)sharedFoodReportList;
+@property (strong, nonatomic) NSMutableArray *reportList;
+- (void) populateReportList;
 
 @end

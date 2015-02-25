@@ -12,7 +12,7 @@
 @interface BFFeedViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
-@property (strong, nonatomic) NSMutableArray *foodReports;
+@property (strong, nonatomic) BFFoodReportList *foodReports;
 
 @end
 
@@ -21,7 +21,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.foodReports = [[NSMutableArray alloc] init];
     [self initTableView];
 }
 
@@ -30,7 +29,8 @@
     self.feedTableView.delegate = self;
     self.feedTableView.dataSource = self;
     self.foodReports = [BFFoodReportList sharedFoodReportList];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@" object:<#(id)#>]
+    [self.foodReports populateReportList];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@"reportUpdate" object:nil];
 }
 
 -(void)updateTableView
@@ -58,7 +58,7 @@
 #pragma mark - table view data source methods
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BFFoodReport *report = [self.foodReports objectAtIndex:indexPath.row];
+    BFFoodReport *report = [self.foodReports.reportList objectAtIndex:indexPath.row];
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ReportCell"];
     [cell.textLabel setText:[NSString stringWithFormat:@"lat: %@, lng: %@", report.lat, report.lng]];
 //    [cell.detailTextLabel setText:@"Distance"];
@@ -67,7 +67,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.foodReports.count;
+    return self.foodReports.reportList.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

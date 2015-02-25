@@ -50,6 +50,7 @@
     }
     self.eventIdArray = [[NSMutableArray alloc] init];
     [BFFoodReportList sharedFoodReportList];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayFoodNotification) name:@"reportUpdate" object:nil];
     return YES;
 }
 
@@ -113,6 +114,7 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
+    [[BFFoodReportList sharedFoodReportList] populateReportList];
     BFQuestion *question = [[BFQuestion alloc] init];
     CLLocation *location = [locations lastObject];
     if ([BFUser fetchUser].username.length > 0) {
@@ -148,6 +150,23 @@
 //        } failure:^(RKObjectRequestOperation *operation, NSError *error) {
 //            NSLog(error.description);
 //        }];
+    }
+}
+
+- (void)displayFoodNotification
+{
+    BFUser *user = [BFUser fetchUser];
+    if (user.foodNotifications.boolValue) {
+        UILocalNotification *foodNotification = [[UILocalNotification alloc] init];
+        CLLocation *currentLocation = self.locationManager.location;
+        BFFoodReport *foodReport = [[[BFFoodReportList sharedFoodReportList] reportList] lastObject];
+        CLLocation *foodLocation = [[CLLocation alloc] initWithLatitude:foodReport.lat.doubleValue longitude:foodReport.lng.doubleValue];
+        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+        [numberFormatter setLocale:[NSLocale currentLocale]];
+        [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        [numberFormatter setMaximumFractionDigits:1];
+        foodNotification.alertBody = [NSString stringWithFormat:@"Food was reported %@ miles away", [numberFormatter stringFromNumber:[NSNumber numberWithDouble:[foodLocation distanceFromLocation:currentLocation]]]];
+        [[UIApplication sharedApplication] presentLocalNotificationNow:foodNotification];
     }
 }
 

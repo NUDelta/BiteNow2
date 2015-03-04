@@ -29,29 +29,92 @@
     [self beginLocationTracking];
     [self initTapDetection];
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)] ) {
-        UIMutableUserNotificationCategory* actionCategory =[[UIMutableUserNotificationCategory alloc] init];
-        actionCategory.identifier = @"YesMaybeNo";
-        UIMutableUserNotificationAction* actionYes = [[UIMutableUserNotificationAction alloc] init];
-        actionYes.title = @"Yes";
-        actionYes.identifier = @"actionYes";
-        actionYes.authenticationRequired = NO;
-        actionYes.activationMode = UIUserNotificationActivationModeBackground;
-        UIMutableUserNotificationAction* actionNo = [[UIMutableUserNotificationAction alloc] init];
-        actionNo.title = @"No";
-        actionNo.identifier = @"actionNo";
-        actionNo.authenticationRequired = NO;
-        actionNo.activationMode = UIUserNotificationActivationModeBackground;
-        NSArray* userNotificationActions = @[actionYes, actionNo];
-        [actionCategory setActions:userNotificationActions forContext:UIUserNotificationActionContextDefault];
-        NSArray* actionCategories = @[actionCategory];
-        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:actionCategories]];
+        // iOS 8 case
+        [self registerUserNotificationCategoriesForApplication:application];
     } else {
-        [application registerForRemoteNotifications];
+        // iOS 7 case
+        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];
     }
     self.eventIdArray = [[NSMutableArray alloc] init];
     [BFFoodReportList sharedFoodReportList];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayFoodNotification) name:@"reportUpdate" object:nil];
     return YES;
+}
+
+-(void)registerUserNotificationCategoriesForApplication:(UIApplication *)application
+{
+    UIMutableUserNotificationCategory* categoryYesNo =[[UIMutableUserNotificationCategory alloc] init];
+    categoryYesNo.identifier = @"YesNo";
+    UIMutableUserNotificationAction* actionYes = [[UIMutableUserNotificationAction alloc] init];
+    actionYes.title = @"Yes";
+    actionYes.identifier = @"actionYes";
+    actionYes.destructive = NO;
+    actionYes.authenticationRequired = NO;
+    actionYes.activationMode = UIUserNotificationActivationModeForeground;
+    UIMutableUserNotificationAction* actionNo = [[UIMutableUserNotificationAction alloc] init];
+    actionNo.title = @"No";
+    actionNo.identifier = @"actionNo";
+    actionNo.authenticationRequired = NO;
+    actionNo.destructive = YES;
+    actionNo.activationMode = UIUserNotificationActivationModeForeground;
+    NSArray* actionYesNoArray = @[actionYes, actionNo];
+    [categoryYesNo setActions:actionYesNoArray forContext:UIUserNotificationActionContextDefault];
+    
+    UIMutableUserNotificationCategory* categoryLotLittle =[[UIMutableUserNotificationCategory alloc] init];
+    categoryYesNo.identifier = @"LotLittle";
+    UIMutableUserNotificationAction* actionLot = [[UIMutableUserNotificationAction alloc] init];
+    actionYes.title = @"Lots";
+    actionYes.identifier = @"actionLot";
+    actionYes.destructive = NO;
+    actionYes.authenticationRequired = NO;
+    actionYes.activationMode = UIUserNotificationActivationModeForeground;
+    UIMutableUserNotificationAction* actionLittle = [[UIMutableUserNotificationAction alloc] init];
+    actionNo.title = @"Little";
+    actionNo.identifier = @"actionLittle";
+    actionNo.authenticationRequired = NO;
+    actionNo.destructive = YES;
+    actionNo.activationMode = UIUserNotificationActivationModeForeground;
+    NSArray* actionLotLittleArray = @[actionLot, actionLittle];
+    [categoryLotLittle setActions:actionLotLittleArray forContext:UIUserNotificationActionContextDefault];
+    NSArray* actionCategories = @[categoryYesNo, categoryLotLittle];
+    
+    [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:[NSSet setWithArray:actionCategories]]];   
+}
+
+-(void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    [application registerForRemoteNotifications];
+}
+
+- (void)application:(UIApplication *) application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *) notification completionHandler: (void (^)()) completionHandler {
+    if ([identifier isEqualToString: @"actionYes"]) {
+        [self sendYesToQuestion:notification];
+    }
+    completionHandler();
+}
+
+-(void)sendYesToQuestion:(UILocalNotification *)notification
+{
+    NSLog(@"%@", notification);
+    
+    NSNumber *questionId = [notification.userInfo valueForKey:@"question_id"];
+    NSString *urlRequestString = [NSString stringWithFormat:@"http://gazetapshare.herokuapp.com/api/v1/answers/new?answer[question_id]=%d&answer[user_id]=%d&answer[value]=%@", questionId.intValue, [BFUser fetchUser].uniqueId.intValue, @"Yes"];
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlRequestString]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (!connectionError) {
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:nil error:nil];
+            NSLog(@"%@", responseDictionary);
+        }
+    }];
+}
+
+-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSLog(@"got device token: %@", deviceToken);
+}
+
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    NSLog(@"%@", error);
 }
 
 -(void)setRootViewController
@@ -76,27 +139,6 @@
             self.window.rootViewController = home;
         }
     }
-}
-
-- (void)application:(UIApplication *) application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *) notification completionHandler: (void (^)()) completionHandler {
-    if ([identifier isEqualToString: @"actionYes"]) {
-        [self sendYesToQuestion:notification];
-    }
-    completionHandler();
-}
-
--(void)sendYesToQuestion:(UILocalNotification *)notification
-{
-    NSLog(@"%@", notification);
-    
-    NSNumber *questionId = [notification.userInfo valueForKey:@"question_id"];
-    NSString *urlRequestString = [NSString stringWithFormat:@"http://gazetapshare.herokuapp.com/api/v1/answers/new?answer[question_id]=%d&answer[user_id]=%d&answer[value]=%@", questionId.intValue, [BFUser fetchUser].uniqueId.intValue, @"Yes"];
-    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlRequestString]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        if (!connectionError) {
-            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:nil error:nil];
-            NSLog(@"%@", responseDictionary);
-        }
-    }];
 }
 
 -(void)beginLocationTracking
@@ -128,6 +170,11 @@
 
 -(void)detectorDidDetectTap:(TSTapDetector *)detector
 {
+    /* let the user know that they reported food */
+    UILocalNotification *reportCreatedNotification = [[UILocalNotification alloc] init];
+    reportCreatedNotification.alertBody = @"Thanks for reporting free food!";
+    reportCreatedNotification.soundName = UILocalNotificationDefaultSoundName;
+    [[UIApplication sharedApplication] presentLocalNotificationNow:reportCreatedNotification];
     /* hit zak's endpoint to create a new task */
     NSLog(@"current location: %f", self.locationManager.location.coordinate.latitude);
     NSString *urlRequestString = [NSString stringWithFormat:@"http://gazetapshare.herokuapp.com/api/v1/tasks/new?task[lat]=%f&task[lng]=%f&task[user_id]=%ld", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude, (long)[BFUser fetchUser].uniqueId.integerValue];
@@ -146,26 +193,26 @@
     BFQuestion *question = [[BFQuestion alloc] init];
     CLLocation *location = [locations lastObject];
     if ([BFUser fetchUser].username.length > 0) {
-//        NSString *urlRequestString = [NSString stringWithFormat:@"http://gazetapshare.herokuapp.com/api/v1/events/new?event[lat]=%f&event[lng]=%f&username=%@", location.coordinate.latitude, location.coordinate.longitude, [BFUser fetchUser].username];
         NSString *urlRequestString = [NSString stringWithFormat:@"http://gazetapshare.herokuapp.com/api/v1/events/new?event[lat]=%f&event[lng]=%f&username=%@", location.coordinate.latitude, location.coordinate.longitude, [BFUser fetchUser].username];
         
-        NSLog(urlRequestString);
+        NSLog(@"%@", urlRequestString);
         [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlRequestString]] queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
             if (!connectionError) {
                 NSError *JSONError = nil;
                 NSDictionary* eventResponse = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&JSONError];
-                
                 if (eventResponse) {
                     NSNumber *eventId = [eventResponse objectForKey:@"id"];
                     if (![self.eventIdArray containsObject:eventId]) {
-                        NSLog(@"%@", eventId);
-                        [self.eventIdArray addObject:eventId];
-                        UILocalNotification *eventNotification = [[UILocalNotification alloc] init];
-                        eventNotification.alertBody = [eventResponse objectForKey:@"question_text"];
-                        eventNotification.hasAction = YES;
-                        eventNotification.category = @"YesMaybeNo";
-                        eventNotification.userInfo = @{@"question_id" : [eventResponse objectForKey:@"id"]};
-                        [[UIApplication sharedApplication] presentLocalNotificationNow:eventNotification];
+                        if (![[eventResponse objectForKey:@"user_id"] isEqualToNumber:[BFUser fetchUser].uniqueId]) {
+                            NSLog(@"%@", eventId);
+                            [self.eventIdArray addObject:eventId];
+                            UILocalNotification *eventNotification = [[UILocalNotification alloc] init];
+                            eventNotification.alertBody = [eventResponse objectForKey:@"question_text"];
+                            eventNotification.hasAction = YES;
+                            eventNotification.category = @"YesNo";
+                            eventNotification.userInfo = @{@"question_id" : [eventResponse objectForKey:@"id"]};
+                            [[UIApplication sharedApplication] presentLocalNotificationNow:eventNotification];
+                        }
                     } else {
                         NSLog(@"object found");
                     }
@@ -197,28 +244,6 @@
     //UIViewController *currentViewController = self.window.rootViewController;
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Is there food nearby?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Maybe", @"Yes", nil];
     [alertView show];
-}
-
-- (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
 @end

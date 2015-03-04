@@ -208,13 +208,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Contribute" translatesAutoresizingMaskIntoConstraints="NO" id="n5M-pT-TAd">
-                                <rect key="frame" x="128" y="76" width="345" height="448"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="n5M-pT-TAd" secondAttribute="height" multiplier="77:100" id="EDU-rJ-3vd"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bitenow" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="73V-li-0B1">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="bitenow" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="73V-li-0B1">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                                 <color key="backgroundColor" red="1" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -227,12 +221,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="gGG-zR-Ivw" firstAttribute="top" secondItem="n5M-pT-TAd" secondAttribute="bottom" constant="27" id="BOA-aB-u9h"/>
                             <constraint firstItem="73V-li-0B1" firstAttribute="leading" secondItem="izq-cY-BWC" secondAttribute="leadingMargin" constant="-16" id="JRn-IT-zz3"/>
-                            <constraint firstItem="n5M-pT-TAd" firstAttribute="centerY" secondItem="izq-cY-BWC" secondAttribute="centerY" id="O2n-7h-uU7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="73V-li-0B1" secondAttribute="trailing" constant="-16" id="en5-oL-Sof"/>
-                            <constraint firstItem="n5M-pT-TAd" firstAttribute="centerX" secondItem="73V-li-0B1" secondAttribute="centerX" id="xiW-7y-8aT"/>
-                            <constraint firstItem="n5M-pT-TAd" firstAttribute="top" secondItem="73V-li-0B1" secondAttribute="bottom" constant="12" id="zFK-U3-rYH"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Contribute" image="TabContribute" id="XbW-ns-lUT"/>
@@ -485,7 +475,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Contribute" width="958" height="1342"/>
         <image name="TabContribute" width="32" height="32"/>
         <image name="TabFeed" width="32" height="32"/>
         <image name="TabUser" width="32" height="32"/>

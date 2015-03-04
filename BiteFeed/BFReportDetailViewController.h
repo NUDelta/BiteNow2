@@ -10,5 +10,6 @@
 #import <MapKit/MapKit.h>
 
 @interface BFReportDetailViewController : UIViewController <MKMapViewDelegate>
+@property NSInteger tableIndex;
 
 @end

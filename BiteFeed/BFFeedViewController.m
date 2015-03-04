@@ -8,6 +8,7 @@
 
 #import "BFFeedViewController.h"
 #import "BFFoodReportList.h"
+#import "BFReportDetailViewController.h"
 
 @interface BFFeedViewController ()
 
@@ -63,6 +64,14 @@
     [cell.textLabel setText:[NSString stringWithFormat:@"lat: %@, lng: %@", report.lat, report.lng]];
 //    [cell.detailTextLabel setText:@"Distance"];
     return cell;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"reportDetail"]) {
+        BFReportDetailViewController *detailController = (BFReportDetailViewController *)segue.destinationViewController;
+        detailController.tableIndex = self.feedTableView.indexPathForSelectedRow.row;
+    }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

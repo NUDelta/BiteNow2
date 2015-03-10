@@ -30,6 +30,11 @@
         [noEmailAlert show];
     }
     if (self.emailTextField.text.length > 0 && self.usernameTextField.text.length > 0) {
+        UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        spinner.center = CGPointMake(160, 240);
+        spinner.tag = 12;
+        [self.view addSubview:spinner];
+        [spinner startAnimating];
         NSString *urlRequestString = [NSString stringWithFormat:@"http://gazetapshare.herokuapp.com/api/v1/users/new?user[username]=%@&&user[email]=%@", self.usernameTextField.text, self.emailTextField.text];
         [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlRequestString]] queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
             if (!connectionError) {

@@ -23,9 +23,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     [self setRootViewController];
-    //[self presentAlertViewFromVisibleController];
     [self beginLocationTracking];
     [self initTapDetection];
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)] ) {
@@ -43,42 +41,91 @@
 
 -(void)registerUserNotificationCategoriesForApplication:(UIApplication *)application
 {
+    UIMutableUserNotificationCategory* categoryFirstReport =[[UIMutableUserNotificationCategory alloc] init];
+    categoryFirstReport.identifier = @"FirstReport";
+    UIMutableUserNotificationAction* actionCancel = [[UIMutableUserNotificationAction alloc] init];
+    actionCancel.title = @"Cancel Report";
+    actionCancel.identifier = @"actionCancel";
+    actionCancel.destructive = YES;
+    actionCancel.authenticationRequired = NO;
+    actionCancel.activationMode = UIUserNotificationActivationModeBackground;
+    NSArray* actionCancelArray = @[actionCancel];
+    [categoryFirstReport setActions:actionCancelArray forContext:UIUserNotificationActionContextDefault];
+    
     UIMutableUserNotificationCategory* categoryYesNo =[[UIMutableUserNotificationCategory alloc] init];
-    categoryYesNo.identifier = @"YesNo";
+    categoryYesNo.identifier = @"1";
     UIMutableUserNotificationAction* actionYes = [[UIMutableUserNotificationAction alloc] init];
     actionYes.title = @"Yes";
     actionYes.identifier = @"actionYes";
     actionYes.destructive = NO;
     actionYes.authenticationRequired = NO;
-    actionYes.activationMode = UIUserNotificationActivationModeForeground;
+    actionYes.activationMode = UIUserNotificationActivationModeBackground;
     UIMutableUserNotificationAction* actionNo = [[UIMutableUserNotificationAction alloc] init];
     actionNo.title = @"No";
     actionNo.identifier = @"actionNo";
     actionNo.authenticationRequired = NO;
     actionNo.destructive = YES;
-    actionNo.activationMode = UIUserNotificationActivationModeForeground;
+    actionNo.activationMode = UIUserNotificationActivationModeBackground;
     NSArray* actionYesNoArray = @[actionYes, actionNo];
     [categoryYesNo setActions:actionYesNoArray forContext:UIUserNotificationActionContextDefault];
     
-    UIMutableUserNotificationCategory* categoryLotLittle =[[UIMutableUserNotificationCategory alloc] init];
-    categoryYesNo.identifier = @"LotLittle";
-    UIMutableUserNotificationAction* actionLot = [[UIMutableUserNotificationAction alloc] init];
-    actionYes.title = @"Lots";
-    actionYes.identifier = @"actionLot";
-    actionYes.destructive = NO;
-    actionYes.authenticationRequired = NO;
-    actionYes.activationMode = UIUserNotificationActivationModeForeground;
-    UIMutableUserNotificationAction* actionLittle = [[UIMutableUserNotificationAction alloc] init];
-    actionNo.title = @"Little";
-    actionNo.identifier = @"actionLittle";
-    actionNo.authenticationRequired = NO;
-    actionNo.destructive = YES;
-    actionNo.activationMode = UIUserNotificationActivationModeForeground;
-    NSArray* actionLotLittleArray = @[actionLot, actionLittle];
-    [categoryLotLittle setActions:actionLotLittleArray forContext:UIUserNotificationActionContextDefault];
-    NSArray* actionCategories = @[categoryYesNo, categoryLotLittle];
+    UIMutableUserNotificationCategory* categoryTechFord =[[UIMutableUserNotificationCategory alloc] init];
+    categoryTechFord.identifier = @"2";
+    UIMutableUserNotificationAction* actionTech = [[UIMutableUserNotificationAction alloc] init];
+    actionTech.title = @"Tech";
+    actionTech.identifier = @"actionTech";
+    actionTech.destructive = NO;
+    actionTech.authenticationRequired = NO;
+    actionTech.activationMode = UIUserNotificationActivationModeBackground;
+    UIMutableUserNotificationAction* actionFord = [[UIMutableUserNotificationAction alloc] init];
+    actionFord.title = @"Ford";
+    actionFord.identifier = @"actionFord";
+    actionFord.authenticationRequired = NO;
+    actionFord.destructive = NO;
+    actionFord.activationMode = UIUserNotificationActivationModeBackground;
+    NSArray* actionTechFordArray = @[actionTech, actionFord];
+    [categoryTechFord setActions:actionTechFordArray forContext:UIUserNotificationActionContextMinimal];
     
-    [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:[NSSet setWithArray:actionCategories]]];   
+    UIMutableUserNotificationCategory* categoryFloors =[[UIMutableUserNotificationCategory alloc] init];
+    categoryFloors.identifier = @"3";
+    UIMutableUserNotificationAction* actionFirst = [[UIMutableUserNotificationAction alloc] init];
+    actionFirst.title = @"first";
+    actionFirst.identifier = @"actionFirst";
+    actionFirst.destructive = NO;
+    actionFirst.authenticationRequired = NO;
+    actionFirst.activationMode = UIUserNotificationActivationModeBackground;
+    UIMutableUserNotificationAction* actionSecond = [[UIMutableUserNotificationAction alloc] init];
+    actionSecond.title = @"second";
+    actionSecond.identifier = @"actionSecond";
+    actionSecond.authenticationRequired = NO;
+    actionSecond.destructive = NO;
+    actionSecond.activationMode = UIUserNotificationActivationModeBackground;
+    NSArray* actionFirstFordArray = @[actionFirst, actionSecond];
+    [categoryFloors setActions:actionFirstFordArray forContext:UIUserNotificationActionContextMinimal];
+    
+    UIMutableUserNotificationCategory* categoryFoodDrink =[[UIMutableUserNotificationCategory alloc] init];
+    categoryFoodDrink.identifier = @"4";
+    UIMutableUserNotificationAction* actionFood = [[UIMutableUserNotificationAction alloc] init];
+    actionFood.title = @"food";
+    actionFood.identifier = @"actionFood";
+    actionFood.destructive = NO;
+    actionFood.authenticationRequired = NO;
+    actionFood.activationMode = UIUserNotificationActivationModeBackground;
+    UIMutableUserNotificationAction* actionDrink = [[UIMutableUserNotificationAction alloc] init];
+    actionDrink.title = @"drink";
+    actionDrink.identifier = @"actionDrink";
+    actionDrink.authenticationRequired = NO;
+    actionDrink.destructive = NO;
+    actionDrink.activationMode = UIUserNotificationActivationModeBackground;
+    NSArray* actionFoodFordArray = @[actionFood, actionDrink];
+    [categoryFoodDrink setActions:actionFoodFordArray forContext:UIUserNotificationActionContextMinimal];
+    
+    UIMutableUserNotificationCategory *categoryPizzaDonuts = [[UIMutableUserNotificationCategory alloc] init];
+    
+    NSArray* actionCategories = @[categoryYesNo, categoryTechFord, categoryFloors, categoryFirstReport, categoryFoodDrink];
+    NSSet *actionSet = [NSSet setWithArray:actionCategories];
+
+    [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:actionSet]];
 }
 
 -(void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
@@ -87,24 +134,41 @@
 }
 
 - (void)application:(UIApplication *) application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *) notification completionHandler: (void (^)()) completionHandler {
-    if ([identifier isEqualToString: @"actionYes"]) {
-        [self sendYesToQuestion:notification];
+    if ([notification.category isEqualToString:@"YesNo"]) {
+        [self confirmReport:notification withIdentifier:identifier];
+    } else {
+        [self addAnswer:notification withIdentifier:identifier];
     }
     completionHandler();
 }
 
--(void)sendYesToQuestion:(UILocalNotification *)notification
+-(void)confirmReport:(UILocalNotification *)notification withIdentifier:(NSString *)identifier
 {
-    NSLog(@"%@", notification);
-    
     NSNumber *questionId = [notification.userInfo valueForKey:@"question_id"];
-    NSString *urlRequestString = [NSString stringWithFormat:@"http://gazetapshare.herokuapp.com/api/v1/answers/new?answer[question_id]=%d&answer[user_id]=%d&answer[value]=%@", questionId.intValue, [BFUser fetchUser].uniqueId.intValue, @"Yes"];
+    NSString *urlRequestString;
+    if ([identifier isEqualToString:@"actionYes"]) {
+        urlRequestString = [NSString stringWithFormat:@"http://gazetapshare.herokuapp.com/api/v1/answers/new?answer[question_id]=%d&answer[user_id]=%d&answer[value]=%@", questionId.intValue, [BFUser fetchUser].uniqueId.intValue, @"true"];
+    } else {
+        urlRequestString = [NSString stringWithFormat:@"http://gazetapshare.herokuapp.com/api/v1/answers/new?answer[question_id]=%d&answer[user_id]=%d&answer[value]=%@", questionId.intValue, [BFUser fetchUser].uniqueId.intValue, @"false"];
+    }
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlRequestString]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (!connectionError) {
-            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:nil error:nil];
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
             NSLog(@"%@", responseDictionary);
         }
     }];
+}
+
+-(void)addAnswer:(UILocalNotification *)notification withIdentifier:(NSString *)identifier
+{
+    NSNumber *questionId = [notification.userInfo valueForKey:@"question_id"];
+    NSString *urlRequestString = [NSString stringWithFormat:@"http://gazetapshare.herokuapp.com/api/v1/answers/new?answer[question_id]=%d&answer[user_id]=%d&answer[response]=%@", questionId.intValue, [BFUser fetchUser].uniqueId.intValue, [identifier stringByReplacingOccurrencesOfString:@"action" withString:@""]];
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlRequestString]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (!connectionError) {
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            NSLog(@"%@", responseDictionary);
+        }
+    }];   
 }
 
 -(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
@@ -173,6 +237,8 @@
     /* let the user know that they reported food */
     UILocalNotification *reportCreatedNotification = [[UILocalNotification alloc] init];
     reportCreatedNotification.alertBody = @"Thanks for reporting free food!";
+    reportCreatedNotification.category = @"FirstReport";
+    reportCreatedNotification.hasAction = NO;
     reportCreatedNotification.soundName = UILocalNotificationDefaultSoundName;
     [[UIApplication sharedApplication] presentLocalNotificationNow:reportCreatedNotification];
     /* hit zak's endpoint to create a new task */
@@ -209,7 +275,13 @@
                             UILocalNotification *eventNotification = [[UILocalNotification alloc] init];
                             eventNotification.alertBody = [eventResponse objectForKey:@"question_text"];
                             eventNotification.hasAction = YES;
-                            eventNotification.category = @"YesNo";
+                            eventNotification.alertAction = @"report no food exists";
+                            eventNotification.soundName = UILocalNotificationDefaultSoundName;
+                            if ([[eventResponse objectForKey:@"sequence_num"] isEqualToNumber:@2]) {
+                                eventNotification.category = @"TechFord";
+                            } else {
+                                eventNotification.category = @"YesNo";
+                            }
                             eventNotification.userInfo = @{@"question_id" : [eventResponse objectForKey:@"id"]};
                             [[UIApplication sharedApplication] presentLocalNotificationNow:eventNotification];
                         }
@@ -234,14 +306,13 @@
         [numberFormatter setLocale:[NSLocale currentLocale]];
         [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
         [numberFormatter setMaximumFractionDigits:1];
-        foodNotification.alertBody = [NSString stringWithFormat:@"Food was reported %@ miles away", [numberFormatter stringFromNumber:[NSNumber numberWithDouble:[foodLocation distanceFromLocation:currentLocation]]]];
+        foodNotification.alertBody = [NSString stringWithFormat:@"Food was reported %@ meters away", [numberFormatter stringFromNumber:[NSNumber numberWithDouble:[foodLocation distanceFromLocation:currentLocation]]]];
         [[UIApplication sharedApplication] presentLocalNotificationNow:foodNotification];
     }
 }
 
 -(void)presentAlertViewFromVisibleController
 {
-    //UIViewController *currentViewController = self.window.rootViewController;
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Is there food nearby?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Maybe", @"Yes", nil];
     [alertView show];
 }

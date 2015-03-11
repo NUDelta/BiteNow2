@@ -23,7 +23,6 @@
 		DCF35FA71A78C93800875717 /* BiteFeedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35FA61A78C93800875717 /* BiteFeedTests.m */; };
 		DCF35FB11A78F42F00875717 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF35FB01A78F42F00875717 /* MapKit.framework */; };
 		DCF35FB41A78F7AC00875717 /* BFReportDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35FB31A78F7AC00875717 /* BFReportDetailViewController.m */; };
-		DCF35FB71A793C6700875717 /* BFVerifiedFoodReport.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35FB61A793C6700875717 /* BFVerifiedFoodReport.m */; };
 		DCF35FBC1A79411500875717 /* BFFoodReport.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35FBB1A79411500875717 /* BFFoodReport.m */; };
 		DCF35FBF1A79423700875717 /* BFRestKitManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35FBE1A79423700875717 /* BFRestKitManager.m */; };
 		DCF35FC41A794A5500875717 /* TSCoreMotionListener.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF35FC11A794A5500875717 /* TSCoreMotionListener.m */; };
@@ -76,8 +75,6 @@
 		DCF35FB01A78F42F00875717 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DCF35FB21A78F7AC00875717 /* BFReportDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFReportDetailViewController.h; sourceTree = "<group>"; };
 		DCF35FB31A78F7AC00875717 /* BFReportDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFReportDetailViewController.m; sourceTree = "<group>"; };
-		DCF35FB51A793C6700875717 /* BFVerifiedFoodReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFVerifiedFoodReport.h; sourceTree = "<group>"; };
-		DCF35FB61A793C6700875717 /* BFVerifiedFoodReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFVerifiedFoodReport.m; sourceTree = "<group>"; };
 		DCF35FBA1A79411500875717 /* BFFoodReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFFoodReport.h; sourceTree = "<group>"; };
 		DCF35FBB1A79411500875717 /* BFFoodReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFFoodReport.m; sourceTree = "<group>"; };
 		DCF35FBD1A79423700875717 /* BFRestKitManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFRestKitManager.h; sourceTree = "<group>"; };
@@ -208,8 +205,6 @@
 		DCF35FB81A793C7A00875717 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DCF35FB51A793C6700875717 /* BFVerifiedFoodReport.h */,
-				DCF35FB61A793C6700875717 /* BFVerifiedFoodReport.m */,
 				DCF35FBA1A79411500875717 /* BFFoodReport.h */,
 				DCF35FBB1A79411500875717 /* BFFoodReport.m */,
 				E541EE361A9681D40003459B /* BFFoodReportList.h */,
@@ -403,7 +398,6 @@
 				DCF35FC51A794A5500875717 /* TSTapDetector.m in Sources */,
 				DC6F35A61A82D5A000D676B1 /* BFUser.m in Sources */,
 				DCF35FC41A794A5500875717 /* TSCoreMotionListener.m in Sources */,
-				DCF35FB71A793C6700875717 /* BFVerifiedFoodReport.m in Sources */,
 				DC647A411A8B14550011C2A4 /* BFSettingsViewController.m in Sources */,
 				DCF35FB41A78F7AC00875717 /* BFReportDetailViewController.m in Sources */,
 				DCF35FBF1A79423700875717 /* BFRestKitManager.m in Sources */,

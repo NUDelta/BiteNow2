@@ -35,7 +35,9 @@
         spinner.tag = 12;
         [self.view addSubview:spinner];
         [spinner startAnimating];
+        [((UIButton *)sender) setEnabled:NO];
         NSString *urlRequestString = [NSString stringWithFormat:@"http://gazetapshare.herokuapp.com/api/v1/users/new?user[username]=%@&&user[email]=%@", self.usernameTextField.text, self.emailTextField.text];
+        urlRequestString = [urlRequestString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlRequestString]] queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
             if (!connectionError) {
                 NSError *JSONError = nil;
@@ -48,18 +50,6 @@
                 }
             }
         }];
-       /* BFUser *user = [BFUser fetchUser];
-        NSLog(@"user's id is %@", user.uniqueId);
-        //NSString *usern = self.usernameTextField.text;
-        [[RKObjectManager sharedManager] getObject:user path:@"users/new" parameters:@{@"user[username]": self.usernameTextField.text, @"user[email]": self.emailTextField.text} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-            NSLog(@"%@", mappingResult);
-            NSLog(mappingResult.description);
-            NSLog(operation.description);
-            [self performSegueWithIdentifier:@"loggedIn" sender:self];
-        } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-            NSLog(operation.description);
-            NSLog(error.description);
-        }];*/
     }
 }
 

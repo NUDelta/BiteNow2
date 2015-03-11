@@ -9,6 +9,7 @@
 #import "BFFeedViewController.h"
 #import "BFFoodReportList.h"
 #import "BFReportDetailViewController.h"
+#import "AppDelegate.h"
 
 @interface BFFeedViewController ()
 
@@ -61,8 +62,13 @@
 {
     BFFoodReport *report = [self.foodReports.reportList objectAtIndex:indexPath.row];
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ReportCell"];
-    [cell.textLabel setText:[NSString stringWithFormat:@"lat: %@, lng: %@", report.lat, report.lng]];
-//    [cell.detailTextLabel setText:@"Distance"];
+    if ([report.foodDrink isEqualToString:@"food"]) {
+        [cell.textLabel setText:[NSString stringWithFormat:@"%@, floor %@", report.foodType, report.floorNumber]];
+    } else {
+        [cell.textLabel setText:[NSString stringWithFormat:@"%@, floor %@", report.drinkType, report.floorNumber]];
+    }
+    CLLocation *reportLocation = [[CLLocation alloc] initWithLatitude:report.lat.doubleValue longitude:report.lng.doubleValue];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%f meters away", [reportLocation distanceFromLocation:((AppDelegate *)[UIApplication sharedApplication].delegate).locationManager.location]];
     return cell;
 }
 

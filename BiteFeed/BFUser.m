@@ -51,15 +51,8 @@
 
 +(void)updateSettings
 {
-    /*BFUser *user;
-    [[RKObjectManager sharedManager] getObject:user path:@"users/update" parameters:@{@"user[user_id]": [BFUser fetchUser].uniqueId, @"user[food_notifications]": [NSNumber numberWithBool:[BFUser fetchUser].foodNotifications], @"user[verify_reports]": [NSNumber numberWithBool:[BFUser fetchUser].verifyReports], @"user[daily_reminders]": [NSNumber numberWithBool:[BFUser fetchUser].dailyReminders]} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        NSLog(mappingResult.description);
-        NSError *error;
-        [user.managedObjectContext save:&error];
-    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        NSLog(error.description);
-     }];*/
     NSString *urlRequestString = [NSString stringWithFormat:@"http://gazetapshare.herokuapp.com/api/v1/users/update?user[user_id]=%@&&user[food_notifications]=%@&&user[verify_reports]=%@&&user[daily_reminders]=%@", [BFUser fetchUser].uniqueId, [BFUser fetchUser].foodNotifications, [BFUser fetchUser].verifyReports, [BFUser fetchUser].dailyReminders];
+    urlRequestString = [urlRequestString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSLog(urlRequestString);
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlRequestString]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (!connectionError) {

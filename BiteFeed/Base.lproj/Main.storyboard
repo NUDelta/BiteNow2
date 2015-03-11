@@ -105,7 +105,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eK0-ue-zcm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Floor in Ford" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eK0-ue-zcm">
                                 <rect key="frame" x="16" y="497" width="246" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -126,31 +126,25 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Event" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wel-6e-Kzo">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Type of food" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wel-6e-Kzo">
                                 <rect key="frame" x="16" y="526" width="246" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="event (i.e. speaker, career fair)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yi2-la-3cD">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="*may not be free for all eaters" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yi2-la-3cD">
                                 <rect key="frame" x="297" y="526" width="287" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Amount Left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Kv-iL-scP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Distance from you" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Kv-iL-scP">
                                 <rect key="frame" x="16" y="555" width="246" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="last time reported" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqP-WC-3Hn">
-                                <rect key="frame" x="297" y="555" width="287" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="building, floor, room number" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KyL-Q1-K3O">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="last time reported" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KyL-Q1-K3O">
                                 <rect key="frame" x="297" y="500" width="287" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -167,7 +161,6 @@
                             <constraint firstItem="G6I-Rs-f4Y" firstAttribute="top" secondItem="VOL-IH-CxY" secondAttribute="top" id="Kjr-7Y-owd"/>
                             <constraint firstItem="eK0-ue-zcm" firstAttribute="leading" secondItem="VOL-IH-CxY" secondAttribute="leadingMargin" id="NDS-Ko-TZb"/>
                             <constraint firstItem="KyL-Q1-K3O" firstAttribute="trailing" secondItem="VOL-IH-CxY" secondAttribute="trailingMargin" id="Pow-gf-DiW"/>
-                            <constraint firstItem="oqP-WC-3Hn" firstAttribute="top" secondItem="Gt8-mv-GNG" secondAttribute="bottom" constant="66" id="QYY-LX-PLy"/>
                             <constraint firstItem="Wel-6e-Kzo" firstAttribute="leading" secondItem="VOL-IH-CxY" secondAttribute="leadingMargin" id="RNp-aT-H3C"/>
                             <constraint firstItem="KyL-Q1-K3O" firstAttribute="top" secondItem="Gt8-mv-GNG" secondAttribute="bottom" constant="8" id="VTy-Xx-pPM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="IED-zY-0UT" secondAttribute="trailing" constant="-16" id="Zqi-kH-zPG"/>
@@ -176,7 +169,6 @@
                             <constraint firstItem="7Kv-iL-scP" firstAttribute="leading" secondItem="VOL-IH-CxY" secondAttribute="leadingMargin" id="h9y-YC-tCU"/>
                             <constraint firstAttribute="centerX" secondItem="Gt8-mv-GNG" secondAttribute="centerX" id="hjA-L6-8SN"/>
                             <constraint firstItem="Gt8-mv-GNG" firstAttribute="top" secondItem="IED-zY-0UT" secondAttribute="bottom" constant="2" id="hkn-GU-Lbc"/>
-                            <constraint firstItem="oqP-WC-3Hn" firstAttribute="trailing" secondItem="VOL-IH-CxY" secondAttribute="trailingMargin" id="o03-9a-0H0"/>
                             <constraint firstItem="eK0-ue-zcm" firstAttribute="top" secondItem="Gt8-mv-GNG" secondAttribute="bottom" constant="8" id="pGt-sZ-r6u"/>
                             <constraint firstItem="IED-zY-0UT" firstAttribute="leading" secondItem="G6I-Rs-f4Y" secondAttribute="leading" id="s6W-Gd-pBn"/>
                             <constraint firstItem="Yi2-la-3cD" firstAttribute="top" secondItem="Gt8-mv-GNG" secondAttribute="bottom" constant="37" id="uKG-ob-b9N"/>
@@ -188,8 +180,12 @@
                     <connections>
                         <outlet property="backBarButtonItem" destination="S8R-bD-Lfg" id="gLl-1c-Rbx"/>
                         <outlet property="backNavigationBar" destination="IED-zY-0UT" id="7Mv-bf-QkR"/>
-                        <outlet property="locationDetailLabel" destination="eK0-ue-zcm" id="KNN-yI-XMq"/>
+                        <outlet property="distanceLabel" destination="7Kv-iL-scP" id="BAz-Mb-EcW"/>
+                        <outlet property="floorLabel" destination="eK0-ue-zcm" id="7cc-Na-Mld"/>
+                        <outlet property="foodTypeLabel" destination="Wel-6e-Kzo" id="Jcr-9e-ZhV"/>
+                        <outlet property="notFreeForAllLabel" destination="Yi2-la-3cD" id="xhP-cW-ZOz"/>
                         <outlet property="reportMapView" destination="Gt8-mv-GNG" id="PtJ-Xq-cwq"/>
+                        <outlet property="reportTimeLabel" destination="KyL-Q1-K3O" id="jah-fU-fHi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zvt-aR-nRE" userLabel="First Responder" sceneMemberID="firstResponder"/>

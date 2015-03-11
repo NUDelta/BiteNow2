@@ -33,7 +33,11 @@
                 BFFoodReport *newReport = [BFFoodReport foodReportWithDictionary:verifiedReport];
                 if (![self.reportList containsObject:newReport]) {
                     [self.reportList addObject:newReport];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reportUpdate" object:self];
+                    // if the report was created in the last two minutes and not just due to
+                    // closing the app, also send a notification
+                    if ([[newReport.updatedAt dateByAddingTimeInterval:120] compare:[NSDate date]] == NSOrderedAscending) {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"reportUpdate" object:self userInfo:@{@"report":newReport}];
+                    }
                 }
             }
         }

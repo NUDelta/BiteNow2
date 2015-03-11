@@ -70,7 +70,6 @@
 
 -(void)initRKObjectMappings
 {
-    [self initBFVerifiedFoodReportObjectMapping];
     [self initBFFoodReportObjectMapping];
     [self initBFQuestionObjectMapping];
     [self initBFUserObjectMapping];
@@ -142,21 +141,6 @@
                                                          }];
     userEntityMapping.identificationAttributes = @[ @"uniqueId" ];
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:userEntityMapping method:RKRequestMethodAny pathPattern:@"food_reports/verified" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
-    [[RKObjectManager sharedManager] addResponseDescriptor:responseDescriptor];
-}
-
--(void)initBFVerifiedFoodReportObjectMapping
-{
-    RKObjectMapping *verifiedFoodReportMapping = [RKObjectMapping mappingForClass:[BFVerifiedFoodReport class]];
-    [verifiedFoodReportMapping addAttributeMappingsFromDictionary:@{
-                                                         @"food_name": @"foodName",
-                                                         @"distance": @"distance",
-                                                         @"detail_location": @"detailLocation",
-                                                         @"event_name" : @"eventName",
-                                                         @"last_verification" : @"lastVerification",
-                                                         @"amount_remaining" : @"amountRemaining"
-                                                         }];
-    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:verifiedFoodReportMapping method:RKRequestMethodAny pathPattern:@"food_reports/verified" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     [[RKObjectManager sharedManager] addResponseDescriptor:responseDescriptor];
 }
 

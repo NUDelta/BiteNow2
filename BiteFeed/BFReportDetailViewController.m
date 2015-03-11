@@ -8,16 +8,20 @@
 
 #import "BFReportDetailViewController.h"
 #import "BFFoodReportList.h"
+#import "AppDelegate.h"
 
 @interface BFReportDetailViewController ()
 
 @property (weak, nonatomic) IBOutlet MKMapView *reportMapView;
 @property (weak, nonatomic) IBOutlet UILabel *locationDetailLabel;
-@property (weak, nonatomic) IBOutlet UILabel *eventNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *amountDetailLabel;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backBarButtonItem;
 @property (weak, nonatomic) IBOutlet UINavigationBar *backNavigationBar;
+@property (weak, nonatomic) IBOutlet UILabel *floorLabel;
+@property (weak, nonatomic) IBOutlet UILabel *foodTypeLabel;
 @property (strong, nonatomic) BFFoodReportList *foodReports;
+@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *reportTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *notFreeForAllLabel;
 
 @end
 
@@ -29,12 +33,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@"reportUpdate" object:nil];
     self.foodReports = [BFFoodReportList sharedFoodReportList];
     [self.foodReports populateReportList];
     self.reportMapView.delegate = self;
     [self loadReportAnnotation];
-    // Do any additional setup after loading the view.
+    if (self.tableIndex >= 0) {
+        [self addDetails];
+    }
+}
+
+-(void)addDetails
+{
+    BFFoodReport *report = [[BFFoodReportList sharedFoodReportList].reportList objectAtIndex:self.tableIndex];
+    self.floorLabel.text = [NSString stringWithFormat:@"Floor %@ of Ford", report.floorNumber];
+    if ([report.foodDrink isEqualToString:@"food"]) {
+        self.foodTypeLabel.text = report.foodType;
+    } else {
+        self.foodTypeLabel.text = report.drinkType;
+    }
+    CLLocation *reportLocation = [[CLLocation alloc] initWithLatitude:report.lat.doubleValue longitude:report.lng.doubleValue];
+    self.distanceLabel.text = [NSString stringWithFormat:@"%f meters away from you", [reportLocation distanceFromLocation:((AppDelegate*)[UIApplication sharedApplication].delegate).locationManager.location]];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HH:mm"];
+    self.reportTimeLabel.text = [NSString stringWithFormat:@"reported at %@", [formatter stringFromDate:report.updatedAt]];
+    if ([report.freeForAnyone isEqualToString:@"yes"]) {
+        self.notFreeForAllLabel.hidden = YES;
+    }
 }
 
 - (void)loadReportAnnotation {
@@ -53,17 +77,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -42,7 +42,7 @@
 -(void)registerUserNotificationCategoriesForApplication:(UIApplication *)application
 {
     UIMutableUserNotificationCategory* categoryFirstReport =[[UIMutableUserNotificationCategory alloc] init];
-    categoryFirstReport.identifier = @"FirstReport";
+    categoryFirstReport.identifier = @"CancelReport";
     UIMutableUserNotificationAction* actionCancel = [[UIMutableUserNotificationAction alloc] init];
     actionCancel.title = @"Cancel Report";
     actionCancel.identifier = @"actionCancel";
@@ -56,13 +56,13 @@
     categoryYesNo.identifier = @"1";
     UIMutableUserNotificationAction* actionYes = [[UIMutableUserNotificationAction alloc] init];
     actionYes.title = @"Yes";
-    actionYes.identifier = @"actionYes";
+    actionYes.identifier = @"actiontrue";
     actionYes.destructive = NO;
     actionYes.authenticationRequired = NO;
     actionYes.activationMode = UIUserNotificationActivationModeBackground;
     UIMutableUserNotificationAction* actionNo = [[UIMutableUserNotificationAction alloc] init];
     actionNo.title = @"No";
-    actionNo.identifier = @"actionNo";
+    actionNo.identifier = @"actionfalse";
     actionNo.authenticationRequired = NO;
     actionNo.destructive = YES;
     actionNo.activationMode = UIUserNotificationActivationModeBackground;
@@ -89,14 +89,14 @@
     UIMutableUserNotificationCategory* categoryFloors =[[UIMutableUserNotificationCategory alloc] init];
     categoryFloors.identifier = @"3";
     UIMutableUserNotificationAction* actionFirst = [[UIMutableUserNotificationAction alloc] init];
-    actionFirst.title = @"first";
-    actionFirst.identifier = @"actionFirst";
+    actionFirst.title = @"1";
+    actionFirst.identifier = @"action1";
     actionFirst.destructive = NO;
     actionFirst.authenticationRequired = NO;
     actionFirst.activationMode = UIUserNotificationActivationModeBackground;
     UIMutableUserNotificationAction* actionSecond = [[UIMutableUserNotificationAction alloc] init];
-    actionSecond.title = @"second";
-    actionSecond.identifier = @"actionSecond";
+    actionSecond.title = @"2";
+    actionSecond.identifier = @"action2";
     actionSecond.authenticationRequired = NO;
     actionSecond.destructive = NO;
     actionSecond.activationMode = UIUserNotificationActivationModeBackground;
@@ -107,13 +107,13 @@
     categoryFoodDrink.identifier = @"4";
     UIMutableUserNotificationAction* actionFood = [[UIMutableUserNotificationAction alloc] init];
     actionFood.title = @"food";
-    actionFood.identifier = @"actionFood";
+    actionFood.identifier = @"actionfood";
     actionFood.destructive = NO;
     actionFood.authenticationRequired = NO;
     actionFood.activationMode = UIUserNotificationActivationModeBackground;
     UIMutableUserNotificationAction* actionDrink = [[UIMutableUserNotificationAction alloc] init];
     actionDrink.title = @"drink";
-    actionDrink.identifier = @"actionDrink";
+    actionDrink.identifier = @"actiondrink";
     actionDrink.authenticationRequired = NO;
     actionDrink.destructive = NO;
     actionDrink.activationMode = UIUserNotificationActivationModeBackground;
@@ -134,12 +134,26 @@
 }
 
 - (void)application:(UIApplication *) application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *) notification completionHandler: (void (^)()) completionHandler {
-    if ([notification.category isEqualToString:@"YesNo"]) {
+    if ([notification.category isEqualToString:@"1"]) {
         [self confirmReport:notification withIdentifier:identifier];
+    } else if ([notification.category isEqualToString:@"CancelReport"]) {
+        [self cancelReportWithNotification:notification];
     } else {
         [self addAnswer:notification withIdentifier:identifier];
     }
     completionHandler();
+}
+
+-(void)cancelReportWithNotification:(UILocalNotification *)notification
+{
+    NSNumber *taskId = [notification.userInfo objectForKey:@"task_id"];
+    NSString *urlRequestString = [NSString stringWithFormat:@"http://gazetapshare.herokuapp.com/api/v1/tasks/cancel?task_id=%@&&user_id=%@", taskId, [BFUser fetchUser].uniqueId];
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlRequestString]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (!connectionError) {
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            NSLog(@"%@", responseDictionary);
+        }
+    }];
 }
 
 -(void)confirmReport:(UILocalNotification *)notification withIdentifier:(NSString *)identifier
@@ -234,20 +248,21 @@
 
 -(void)detectorDidDetectTap:(TSTapDetector *)detector
 {
-    /* let the user know that they reported food */
-    UILocalNotification *reportCreatedNotification = [[UILocalNotification alloc] init];
-    reportCreatedNotification.alertBody = @"Thanks for reporting free food!";
-    reportCreatedNotification.category = @"FirstReport";
-    reportCreatedNotification.hasAction = NO;
-    reportCreatedNotification.soundName = UILocalNotificationDefaultSoundName;
-    [[UIApplication sharedApplication] presentLocalNotificationNow:reportCreatedNotification];
     /* hit zak's endpoint to create a new task */
     NSLog(@"current location: %f", self.locationManager.location.coordinate.latitude);
     NSString *urlRequestString = [NSString stringWithFormat:@"http://gazetapshare.herokuapp.com/api/v1/tasks/new?task[lat]=%f&task[lng]=%f&task[user_id]=%ld", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude, (long)[BFUser fetchUser].uniqueId.integerValue];
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlRequestString]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (!connectionError) {
+            /* let the user know that they reported food */
             NSLog(@"successfully posted task");
             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:nil error:nil];
+            UILocalNotification *reportCreatedNotification = [[UILocalNotification alloc] init];
+            reportCreatedNotification.alertBody = @"Thanks for reporting free food!";
+            reportCreatedNotification.category = @"CancelReport";
+            reportCreatedNotification.hasAction = NO;
+            reportCreatedNotification.soundName = UILocalNotificationDefaultSoundName;
+            reportCreatedNotification.userInfo = @{@"task_id": [responseDictionary objectForKey:@"id"]};
+            [[UIApplication sharedApplication] presentLocalNotificationNow:reportCreatedNotification];
             NSLog(@"%@", responseDictionary);
         }
     }];
@@ -269,7 +284,7 @@
                 if (eventResponse) {
                     NSNumber *eventId = [eventResponse objectForKey:@"id"];
                     if (![self.eventIdArray containsObject:eventId]) {
-                        if (![[eventResponse objectForKey:@"user_id"] isEqualToNumber:[BFUser fetchUser].uniqueId]) {
+                        //if (![[eventResponse objectForKey:@"user_id"] isEqualToNumber:[BFUser fetchUser].uniqueId] && [eventResponse objectForKey:@"user_id"]) {
                             NSLog(@"%@", eventId);
                             [self.eventIdArray addObject:eventId];
                             UILocalNotification *eventNotification = [[UILocalNotification alloc] init];
@@ -277,14 +292,14 @@
                             eventNotification.hasAction = YES;
                             eventNotification.alertAction = @"report no food exists";
                             eventNotification.soundName = UILocalNotificationDefaultSoundName;
-                            if ([[eventResponse objectForKey:@"sequence_num"] isEqualToNumber:@2]) {
-                                eventNotification.category = @"TechFord";
+                            if ([[eventResponse objectForKey:@"sequence_num"] compare:@5] == NSOrderedAscending) {
+                                eventNotification.category = [NSString stringWithFormat:@"%@", [eventResponse objectForKey:@"sequence_num"]];
                             } else {
                                 eventNotification.category = @"YesNo";
                             }
                             eventNotification.userInfo = @{@"question_id" : [eventResponse objectForKey:@"id"]};
                             [[UIApplication sharedApplication] presentLocalNotificationNow:eventNotification];
-                        }
+                        //}
                     } else {
                         NSLog(@"object found");
                     }

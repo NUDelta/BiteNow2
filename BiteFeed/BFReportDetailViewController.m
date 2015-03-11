@@ -56,9 +56,12 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"HH:mm"];
     self.reportTimeLabel.text = [NSString stringWithFormat:@"reported at %@", [formatter stringFromDate:report.updatedAt]];
-    if ([report.freeForAnyone isEqualToString:@"yes"]) {
+    // WARNING: this should really be uncommented. However, the logic for determining whether the
+    // food is free for everyone seems to be a bit screwed up. For the sake of our study, we will
+    // leave this commented out.
+    //if ([report.freeForAnyone isEqualToString:@"yes"]) {
         self.notFreeForAllLabel.hidden = YES;
-    }
+    //}
 }
 
 - (void)loadReportAnnotation {

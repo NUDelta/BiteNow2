@@ -501,8 +501,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Stephen Chan (T7KP87A8NR)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Northwestern University";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Northwestern University";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -532,7 +532,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = BiteNow;
-				PROVISIONING_PROFILE = "04ba0983-4048-421f-9b68-5847bb9b9564";
+				PROVISIONING_PROFILE = "a684a7dc-008e-48d8-a1cb-9c87dc6be3e3";
 			};
 			name = Debug;
 		};
@@ -541,15 +541,15 @@
 			baseConfigurationReference = 2C7321AF38F5D1F5FAE88F6F /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Stephen Chan (T7KP87A8NR)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Northwestern University";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Northwestern University";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = BiteFeed/BFPrefixHeader.pch;
 				INFOPLIST_FILE = BiteFeed/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = BiteNow;
-				PROVISIONING_PROFILE = "04ba0983-4048-421f-9b68-5847bb9b9564";
+				PROVISIONING_PROFILE = "a684a7dc-008e-48d8-a1cb-9c87dc6be3e3";
 			};
 			name = Release;
 		};

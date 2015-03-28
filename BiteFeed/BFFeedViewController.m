@@ -68,7 +68,7 @@
         [cell.textLabel setText:[NSString stringWithFormat:@"%@, floor %@", report.drinkType, report.floorNumber]];
     }
     CLLocation *reportLocation = [[CLLocation alloc] initWithLatitude:report.lat.doubleValue longitude:report.lng.doubleValue];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%f meters away", [reportLocation distanceFromLocation:((AppDelegate *)[UIApplication sharedApplication].delegate).locationManager.location]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.f meters away", [reportLocation distanceFromLocation:((AppDelegate *)[UIApplication sharedApplication].delegate).locationManager.location]];
     return cell;
 }
 

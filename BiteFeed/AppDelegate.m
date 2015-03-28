@@ -413,9 +413,9 @@
         [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
         [numberFormatter setMaximumFractionDigits:1];
         if ([foodReport.foodDrink isEqualToString:@"drink"]) {
-            foodNotification.alertBody = [NSString stringWithFormat:@"%@ was reported on floor %@ of Ford, %@ meters away!", foodReport.drinkType, foodReport.floorNumber,  [numberFormatter stringFromNumber:[NSNumber numberWithDouble:[foodLocation distanceFromLocation:currentLocation]]]];
+            foodNotification.alertBody = [NSString stringWithFormat:@"%@ was reported on floor %@ of Ford, %.f meters away!", foodReport.drinkType, foodReport.floorNumber,  [numberFormatter stringFromNumber:[NSNumber numberWithDouble:[foodLocation distanceFromLocation:currentLocation]]].doubleValue];
         } else {
-            foodNotification.alertBody = [NSString stringWithFormat:@"%@ was reported on floor %@ of Ford, %@ meters away!", foodReport.foodType, foodReport.floorNumber,  [numberFormatter stringFromNumber:[NSNumber numberWithDouble:[foodLocation distanceFromLocation:currentLocation]]]];
+            foodNotification.alertBody = [NSString stringWithFormat:@"%@ was reported on floor %@ of Ford, %.f meters away!", foodReport.foodType, foodReport.floorNumber,  [numberFormatter stringFromNumber:[NSNumber numberWithDouble:[foodLocation distanceFromLocation:currentLocation]]].doubleValue];
         }
         [[UIApplication sharedApplication] presentLocalNotificationNow:foodNotification];
     }
